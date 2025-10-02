@@ -325,3 +325,51 @@ function renderTrendingAndForYou() {
 
     // (দ্রষ্টব্য: "For You" লজিক আরও জটিল, যার জন্য ইউজারের ক্লাস, ক্যাটাগরি প্রায়োরিটি ইত্যাদি দরকার)
           }
+// --- Admin Panel Setup & Security ---
+
+const ADMIN_PASSWORD_HASH = 'juyelAdminPass123'; // এটি একটি ডামি পাসওয়ার্ড। বাস্তবে এনক্রিপ্টেড হ্যাশ ব্যবহার করুন।
+const LOGIN_TOKEN_KEY = 'adminLoggedIn';
+
+// লগইন ফর্ম সাবমিট লিসেনার
+document.getElementById('loginForm').addEventListener('submit', handleAdminLogin);
+// অ্যাডমিন লিঙ্ক ক্লিক লিসেনার (যদি লগইন না থাকে, মডাল দেখাবে)
+document.getElementById('adminLink').addEventListener('click', checkAdminAccess);
+// অ্যাডমিন মডাল বন্ধ করা
+document.getElementById('loginClose').addEventListener('click', () => {
+    document.getElementById('loginModal').style.display = 'none';
+});
+
+function handleAdminLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    // পাসওয়ার্ড চেক
+    // বাস্তবে: সার্ভারকে পাসওয়ার্ড পাঠিয়ে ভেরিফাই করতে হবে।
+    if (email === 'admin@graphz.com' && password === 'adminpass') { 
+        // সফল লগইন: লোকাল স্টোরেজে টোকেন সেট করা
+        localStorage.setItem(LOGIN_TOKEN_KEY, 'true'); 
+        alert('Login Successful! Welcome, Admin.');
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'flex'; 
+        // অ্যাডমিন প্যানেল খুলে দেওয়া
+    } else {
+        alert('Login Failed. Check your email and password.');
+    }
+}
+
+function checkAdminAccess(event) {
+    event.preventDefault();
+    if (localStorage.getItem(LOGIN_TOKEN_KEY) === 'true') {
+        // যদি লগইন টোকেন থাকে, সরাসরি প্যানেল দেখাও
+        document.getElementById('adminPanel').style.display = 'flex';
+    } else {
+        // টোকেন না থাকলে লগইন মডাল দেখাও
+        document.getElementById('loginModal').style.display = 'flex';
+    }
+}
+
+// অ্যাডমিন প্যানেল বন্ধ করার জন্য লিসেনার
+document.getElementById('adminClose').addEventListener('click', () => {
+    document.getElementById('adminPanel').style.display = 'none';
+});
