@@ -1,0 +1,3562 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<!-- Advanced Head Section: Multi-Language Support, SEO Optimized, PWA Ready -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Graphz - Interactive Physics & Chemistry Graphs for Class 11-12 | NCERT Learning Platform</title>
+  <meta name="description" content="Explore interactive Physics & Chemistry graphs for Class 11-12 NCERT students. Download, create, and learn with AI-powered recommendations, multilingual support, and adaptive learning paths.">
+  <meta name="keywords" content="graphz, physics graphs, chemistry graphs, ncert, class 11, class 12, educational graphs, interactive learning, bengali education, chart.js, plotly, ai learning">
+  <meta name="author" content="Graphz Team">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://graphz-learning.com/">
+  <meta property="og:title" content="Graphz - Interactive Physics & Chemistry Graphs">
+  <meta property="og:description" content="AI-powered graph learning platform for NCERT students with multilingual support and adaptive learning.">
+  <meta property="og:image" content="https://graphz-learning.com/images/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:site_name" content="Graphz">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@graphz_learning">
+  <meta name="twitter:title" content="Graphz - Interactive Educational Graphs">
+  <meta name="twitter:description" content="Learn Physics & Chemistry graphs interactively with AI recommendations and multilingual support.">
+  <meta name="twitter:image" content="https://graphz-learning.com/images/twitter-banner.jpg">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Graphz">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Graphz",
+    "url": "https://graphz-learning.com",
+    "logo": "https://graphz-learning.com/images/logo.png",
+    "description": "Interactive Physics and Chemistry graph learning platform for Class 11-12 NCERT students",
+    "foundingDate": "2024",
+    "founder": {
+      "@type": "Person",
+      "name": "Graphz Team"
+    },
+    "areaServed": "Global",
+    "educationalLevel": "Secondary Education",
+    "educationalRole": "Learning Platform",
+    "hasCourse": {
+      "@type": "Course",
+      "name": "Physics and Chemistry Graphs",
+      "description": "Interactive graph learning for NCERT curriculum",
+      "educationalLevel": "Class 11-12"
+    },
+    "sameAs": [
+      "https://twitter.com/graphz_learning",
+      "https://github.com/graphz-learning"
+    ]
+  }
+  </script>
+
+  <!-- Additional Schema for Search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Graphz Learning Platform",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "permissions": "browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  
+  <!-- DNS Prefetch for CDNs -->
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  <!-- Icons & Manifest -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- External Resources -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Primary Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Critical CSS (Inline for above-fold content) -->
+  <style>
+    /* Critical CSS for initial load */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #64748b;
+      --accent-color: #f59e0b;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --error-color: #ef4444;
+      --dark-bg: #0f172a;
+      --light-bg: #f8fafc;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+    }
+    
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--light-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid var(--primary-color);
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      animation: rotation 1s linear infinite;
+    }
+    
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Skip to Main Content for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Section: Advanced Navigation with Multi-Level Menu -->
+  <header class="header" role="banner">
+    <div class="container">
+      <div class="header-content">
+        
+        <!-- Logo & Brand -->
+        <div class="brand">
+          <a href="#home" class="logo-link" aria-label="Graphz Home">
+            <div class="logo">
+              <i class="fas fa-chart-network logo-icon" aria-hidden="true"></i>
+              <div class="logo-text">
+                <h1 class="logo-title">Graphz</h1>
+                <span class="logo-subtitle">Learn Visually</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Primary Navigation -->
+        <nav class="primary-nav" role="navigation" aria-label="Main Navigation">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#home" class="nav-link active" data-nav="home">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span>হোম</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#graphs" class="nav-link" data-nav="graphs">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                <span>গ্রাফ</span>
+                <i class="fas fa-chevron-down dropdown-icon" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a href="#physics-graphs" class="dropdown-link">
+                  <i class="fas fa-atom" aria-hidden="true"></i>
+                  পদার্থবিজ্ঞান
+                </a>
+                <a href="#chemistry-graphs" class="dropdown-link">
+                  <i class="fas fa-flask" aria-hidden="true"></i>
+                  রসায়ন
+                </a>
+                <a href="#interactive-graphs" class="dropdown-link">
+                  <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+                  ইন্টারেক্টিভ
+                </a>
+                <a href="#recent-graphs" class="dropdown-link">
+                  <i class="fas fa-clock" aria-hidden="true"></i>
+                  সাম্প্রতিক
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="#quiz" class="nav-link" data-nav="quiz">
+                <i class="fas fa-brain" aria-hidden="true"></i>
+                <span>কুইজ</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#progress" class="nav-link" data-nav="progress">
+                <i class="fas fa-trophy" aria-hidden="true"></i>
+                <span>প্রোগ্রেস</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#more" class="nav-link" data-nav="more">
+                <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+                <span>আরো</span>
+                <i class="fas fa-chevron-down dropdown-icon" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a href="#feedback" class="dropdown-link">
+                  <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                  ফিডব্যাক
+                </a>
+                <a href="#about" class="dropdown-link">
+                  <i class="fas fa-info-circle" aria-hidden="true"></i>
+                  About
+                </a>
+                <a href="#contact" class="dropdown-link">
+                  <i class="fas fa-envelope" aria-hidden="true"></i>
+                  Contact
+                </a>
+                <a href="#help" class="dropdown-link">
+                  <i class="fas fa-question-circle" aria-hidden="true"></i>
+                  Help
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          
+          <!-- Search Trigger -->
+          <button class="action-btn search-trigger" aria-label="Open search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+
+          <!-- User Menu -->
+          <div class="user-menu">
+            <button class="user-btn" id="userMenuButton" aria-label="User menu">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+              <div class="user-info">
+                <span class="user-name">Guest User</span>
+                <span class="user-status">Not signed in</span>
+              </div>
+              <div class="user-actions">
+                <button class="user-action-btn" id="loginBtn">
+                  <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                  Sign In
+                </button>
+                <button class="user-action-btn" id="registerBtn">
+                  <i class="fas fa-user-plus" aria-hidden="true"></i>
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin Access -->
+          <button class="admin-access-btn" id="adminAccessBtn" aria-label="Admin access">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </button>
+
+          <!-- Mobile Menu Toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <div class="mobile-nav-content">
+        <!-- Mobile nav items will be populated by JavaScript -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Global Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-container">
+      <div class="search-header">
+        <h2>গ্রাফ খুঁজুন</h2>
+        <button class="close-search" id="closeSearch" aria-label="Close search">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search-input-group">
+        <input type="text" 
+               id="globalSearchInput" 
+               placeholder="গ্রাফের নাম, ট্যাগ, বিষয় বা সমীকরণ লিখুন..."
+               aria-label="Search graphs">
+        <button class="search-submit" id="globalSearchSubmit" aria-label="Search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions">
+        <!-- Search suggestions will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main id="main-content" class="main-content" role="main">
+<!-- Hero Section: Advanced with Personalization -->
+<section id="home" class="hero-section" role="region" aria-labelledby="hero-title">
+  <div class="hero-background">
+    <div class="hero-particles" id="heroParticles"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      
+      <!-- Hero Text -->
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="badge-text">AI-Powered Learning</span>
+        </div>
+        
+        <h1 id="hero-title" class="hero-title">
+          <span class="title-line">গ্রাফের জগতে</span>
+          <span class="title-line accent">স্বাগতম!</span>
+        </h1>
+        
+        <p class="hero-description">
+          ক্লাস ১১-১২ এর পদার্থবিজ্ঞান ও রসায়নের সমস্ত গ্রাফ এক জায়গায়। 
+          <strong>ইন্টারেক্টিভ গ্রাফ</strong>, <strong>AI রিকমেন্ডেশন</strong>, এবং 
+          <strong>মাল্টিল্যাঙ্গুয়েজ</strong> সাপোর্ট সহ শিখুন।
+        </p>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number" id="totalGraphsCount">500+</span>
+            <span class="stat-label">গ্রাফ</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="activeUsers">10K+</span>
+            <span class="stat-label">সক্রিয় শিক্ষার্থী</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="successRate">98%</span>
+            <span class="stat-label">সাফল্যের হার</span>
+          </div>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-hero" id="exploreGraphsBtn">
+            <i class="fas fa-rocket" aria-hidden="true"></i>
+            এক্সপ্লোর শুরু করুন
+          </button>
+          <button class="btn btn-secondary btn-hero" id="takeTourBtn">
+            <i class="fas fa-play-circle" aria-hidden="true"></i>
+            ট্যুর নিন
+          </button>
+          <button class="btn btn-outline btn-hero" id="watchDemoBtn">
+            <i class="fas fa-video" aria-hidden="true"></i>
+            ডেমো দেখুন
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="hero-visual">
+        <div class="graph-preview">
+          <div class="preview-card preview-1">
+            <div class="preview-graph" id="previewGraph1"></div>
+            <span class="preview-label">ইন্টারেক্টিভ গ্রাফ</span>
+          </div>
+          <div class="preview-card preview-2">
+            <div class="preview-graph" id="previewGraph2"></div>
+            <span class="preview-label">রিয়েল-টাইম ডেটা</span>
+          </div>
+          <div class="preview-card preview-3">
+            <div class="preview-graph" id="previewGraph3"></div>
+            <span class="preview-label">এডাপ্টিভ লার্নিং</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator">
+    <span>স্ক্রল করুন</span>
+    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+  </div>
+</section>
+
+<!-- Smart Search Section -->
+<section class="smart-search-section" role="search" aria-labelledby="search-title">
+  <div class="container">
+    <div class="search-section-header">
+      <h2 id="search-title" class="section-title">স্মার্ট গ্রাফ সার্চ</h2>
+      <p class="section-subtitle">গ্রাফের নাম, বিষয়, ট্যাগ বা যেকোনো কিওয়ার্ড দিয়ে খুঁজুন</p>
+    </div>
+
+    <div class="smart-search-container">
+      <!-- Main Search Input -->
+      <div class="search-input-wrapper">
+        <div class="search-icon">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </div>
+        <input type="text" 
+               id="mainSearchInput" 
+               class="search-input" 
+               placeholder="যেমন: ওহমের সূত্র, বয়েলের সূত্র, তাপগতিবিদ্যা..."
+               aria-label="Search graphs by name, topic, or keyword"
+               autocomplete="off">
+        <div class="search-controls">
+          <button class="search-clear" id="searchClear" aria-label="Clear search">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+          <button class="voice-search-btn" id="voiceSearchBtn" aria-label="Voice search">
+            <i class="fas fa-microphone" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Filters -->
+      <div class="quick-filters">
+        <div class="filter-group">
+          <label class="filter-label">দ্রুত ফিল্টার:</label>
+          <div class="filter-chips">
+            <button class="filter-chip active" data-filter="all">সব</button>
+            <button class="filter-chip" data-filter="physics">
+              <i class="fas fa-atom" aria-hidden="true"></i>
+              পদার্থবিজ্ঞান
+            </button>
+            <button class="filter-chip" data-filter="chemistry">
+              <i class="fas fa-flask" aria-hidden="true"></i>
+              রসায়ন
+            </button>
+            <button class="filter-chip" data-filter="interactive">
+              <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+              ইন্টারেক্টিভ
+            </button>
+            <button class="filter-chip" data-filter="trending">
+              <i class="fas fa-fire" aria-hidden="true"></i>
+              ট্রেন্ডিং
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Search Toggle -->
+      <div class="advanced-search-toggle">
+        <button class="btn-text" id="advancedSearchToggle">
+          <i class="fas fa-sliders-h" aria-hidden="true"></i>
+          অ্যাডভান্সড সার্চ
+          <i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Advanced Search Panel -->
+      <div class="advanced-search-panel" id="advancedSearchPanel" aria-hidden="true">
+        <div class="advanced-filters-grid">
+          
+          <!-- Subject & Class Filters -->
+          <div class="filter-column">
+            <label class="filter-title">বিষয় ও ক্লাস</label>
+            <select id="filterSubject" class="filter-select">
+              <option value="">সব বিষয়</option>
+              <option value="physics">পদার্থবিজ্ঞান</option>
+              <option value="chemistry">রসায়ন</option>
+            </select>
+            <select id="filterClass" class="filter-select">
+              <option value="">সব ক্লাস</option>
+              <option value="11">ক্লাস ১১</option>
+              <option value="12">ক্লাস ১২</option>
+            </select>
+          </div>
+
+          <!-- Chapter & Difficulty -->
+          <div class="filter-column">
+            <label class="filter-title">অধ্যায় ও কঠিনতা</label>
+            <select id="filterChapter" class="filter-select">
+              <option value="">সব অধ্যায়</option>
+              <!-- Chapters will be populated dynamically -->
+            </select>
+            <select id="filterDifficulty" class="filter-select">
+              <option value="">সব লেভেল</option>
+              <option value="easy">সহজ</option>
+              <option value="medium">মধ্যম</option>
+              <option value="hard">কঠিন</option>
+            </select>
+          </div>
+
+          <!-- Graph Type & Features -->
+          <div class="filter-column">
+            <label class="filter-title">গ্রাফ টাইপ ও ফিচার</label>
+            <select id="filterType" class="filter-select">
+              <option value="">সব টাইপ</option>
+              <option value="static">স্ট্যাটিক ইমেজ</option>
+              <option value="dynamic">ডাইনামিক গ্রাফ</option>
+              <option value="interactive">ইন্টারেক্টিভ</option>
+            </select>
+            <select id="filterFeatures" class="filter-select" multiple>
+              <option value="animation">অ্যানিমেশন</option>
+              <option value="download">ডাউনলোডযোগ্য</option>
+              <option value="interactive">ইন্টারেক্টিভ</option>
+              <option value="3d">3D ভিউ</option>
+            </select>
+          </div>
+
+          <!-- Sort Options -->
+          <div class="filter-column">
+            <label class="filter-title">সাজান</label>
+            <select id="sortBy" class="filter-select">
+              <option value="relevance">রিলেভেন্স</option>
+              <option value="popular">জনপ্রিয়তা</option>
+              <option value="recent">সাম্প্রতিক</option>
+              <option value="title">নাম (A-Z)</option>
+            </select>
+            <div class="filter-actions">
+              <button class="btn btn-secondary" id="applyFilters">অ্যাপ্লাই ফিল্টার</button>
+              <button class="btn btn-text" id="resetFilters">রিসেট</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Suggestions -->
+    <div class="search-suggestions-panel" id="searchSuggestionsPanel">
+      <div class="suggestions-header">
+        <h3>সাজেস্টেড সার্চ</h3>
+        <button class="btn-text" id="closeSuggestions">বন্ধ করুন</button>
+      </div>
+      <div class="suggestions-grid" id="suggestionsGrid">
+        <!-- Suggestions will be populated dynamically -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Graph Gallery Section: Advanced with AI Recommendations -->
+<section id="gallery" class="graph-gallery-section" role="region" aria-labelledby="gallery-title">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <div class="header-content">
+        <h2 id="gallery-title" class="section-title">গ্রাফ গ্যালারি</h2>
+        <p class="section-subtitle">এক্সপ্লোর করুন, শিখুন এবং ডাউনলোড করুন</p>
+      </div>
+      
+      <div class="header-actions">
+        <div class="view-controls">
+          <button class="view-btn active" data-view="grid" aria-label="Grid view">
+            <i class="fas fa-th" aria-hidden="true"></i>
+          </button>
+          <button class="view-btn" data-view="list" aria-label="List view">
+            <i class="fas fa-list" aria-hidden="true"></i>
+          </button>
+          <button class="view-btn" data-view="compact" aria-label="Compact view">
+            <i class="fas fa-grip-vertical" aria-hidden="true"></i>
+          </button>
+        </div>
+        
+        <div class="sort-controls">
+          <select id="gallerySort" class="sort-select" aria-label="Sort graphs by">
+            <option value="relevance">রিলেভেন্স</option>
+            <option value="popular">সবচেয়ে জনপ্রিয়</option>
+            <option value="recent">সাম্প্রতিক</option>
+            <option value="title">নাম (A-Z)</option>
+            <option value="difficulty">কঠিনতা (সহজ থেকে কঠিন)</option>
+            <option value="views">সবচেয়ে ভিউড</option>
+            <option value="downloads">সবচেয়ে ডাউনলোডেড</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Recommendations Bar -->
+    <div class="ai-recommendations-bar" id="aiRecommendationsBar">
+      <div class="ai-header">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <span>AI সাজেস্টেশন</span>
+      </div>
+      <div class="ai-suggestions" id="aiSuggestions">
+        <!-- AI suggestions will be populated dynamically -->
+      </div>
+      <button class="ai-refresh" id="refreshAI" aria-label="Refresh AI recommendations">
+        <i class="fas fa-sync-alt" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Advanced Filter System -->
+    <div class="advanced-filter-system">
+      
+      <!-- Main Filter Categories -->
+      <div class="filter-categories">
+        <div class="filter-category active" data-category="all">
+          <i class="fas fa-layer-group" aria-hidden="true"></i>
+          <span>সব গ্রাফ</span>
+          <span class="filter-count" id="countAll">0</span>
+        </div>
+        
+        <div class="filter-category" data-category="physics">
+          <i class="fas fa-atom" aria-hidden="true"></i>
+          <span>পদার্থবিজ্ঞান</span>
+          <span class="filter-count" id="countPhysics">0</span>
+        </div>
+        
+        <div class="filter-category" data-category="chemistry">
+          <i class="fas fa-flask" aria-hidden="true"></i>
+          <span>রসায়ন</span>
+          <span class="filter-count" id="countChemistry">0</span>
+        </div>
+        
+        <div class="filter-category" data-category="interactive">
+          <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+          <span>ইন্টারেক্টিভ</span>
+          <span class="filter-count" id="countInteractive">0</span>
+        </div>
+        
+        <div class="filter-category" data-category="trending">
+          <i class="fas fa-fire" aria-hidden="true"></i>
+          <span>ট্রেন্ডিং</span>
+          <span class="filter-count" id="countTrending">0</span>
+        </div>
+        
+        <div class="filter-category" data-category="recent">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <span>সাম্প্রতিক</span>
+          <span class="filter-count" id="countRecent">0</span>
+        </div>
+      </div>
+
+      <!-- Sub-Filter Panel -->
+      <div class="sub-filter-panel" id="subFilterPanel">
+        
+        <!-- Physics Sub-filters -->
+        <div class="sub-filter-group" data-category="physics">
+          <h4>পদার্থবিজ্ঞান টপিকস</h4>
+          <div class="sub-filter-chips">
+            <button class="sub-filter-chip" data-subfilter="mechanics">মেকানিক্স</button>
+            <button class="sub-filter-chip" data-subfilter="electricity">ইলেক্ট্রিসিটি</button>
+            <button class="sub-filter-chip" data-subfilter="magnetism">ম্যাগনেটিজম</button>
+            <button class="sub-filter-chip" data-subfilter="optics">অপটিক্স</button>
+            <button class="sub-filter-chip" data-subfilter="thermodynamics">তাপগতিবিদ্যা</button>
+            <button class="sub-filter-chip" data-subfilter="waves">তরঙ্গ</button>
+            <button class="sub-filter-chip" data-subfilter="modern-physics">আধুনিক পদার্থবিদ্যা</button>
+          </div>
+        </div>
+
+        <!-- Chemistry Sub-filters -->
+        <div class="sub-filter-group" data-category="chemistry">
+          <h4>রসায়ন টপিকস</h4>
+          <div class="sub-filter-chips">
+            <button class="sub-filter-chip" data-subfilter="physical-chemistry">ভৌত রসায়ন</button>
+            <button class="sub-filter-chip" data-subfilter="organic-chemistry">জৈব রসায়ন</button>
+            <button class="sub-filter-chip" data-subfilter="inorganic-chemistry">অজৈব রসায়ন</button>
+            <button class="sub-filter-chip" data-subfilter="analytical-chemistry">বিশ্লেষণী রসায়ন</button>
+            <button class="sub-filter-chip" data-subfilter="biochemistry">জৈব রসায়ন</button>
+            <button class="sub-filter-chip" data-subfilter="environmental-chemistry">পরিবেশ রসায়ন</button>
+          </div>
+        </div>
+
+        <!-- Interactive Sub-filters -->
+        <div class="sub-filter-group" data-category="interactive">
+          <h4>ইন্টারেক্টিভ ফিচারস</h4>
+          <div class="sub-filter-chips">
+            <button class="sub-filter-chip" data-subfilter="animation">অ্যানিমেশন</button>
+            <button class="sub-filter-chip" data-subfilter="simulation">সিমুলেশন</button>
+            <button class="sub-filter-chip" data-subfilter="real-time">রিয়েল-টাইম ডেটা</button>
+            <button class="sub-filter-chip" data-subfilter="3d">3D ভিউ</button>
+            <button class="sub-filter-chip" data-subfilter="calculations">ক্যালকুলেশন</button>
+            <button class="sub-filter-chip" data-subfilter="comparison">কম্পেয়ারিজন</button>
+          </div>
+        </div>
+
+        <!-- Reset Filters -->
+        <div class="filter-actions">
+          <button class="btn btn-outline" id="resetAllFilters">
+            <i class="fas fa-redo" aria-hidden="true"></i>
+            সব ফিল্টার রিসেট
+          </button>
+          <button class="btn btn-text" id="saveFilterPreset">
+            <i class="fas fa-save" aria-hidden="true"></i>
+            প্রিসেট সেভ করুন
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graph Grid -->
+    <div class="graph-grid-container">
+      
+      <!-- Loading State -->
+      <div class="grid-loading" id="gridLoading">
+        <div class="loading-spinner"></div>
+        <p>গ্রাফ লোড হচ্ছে...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div class="grid-empty-state" id="gridEmptyState" aria-hidden="true">
+        <div class="empty-state-icon">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </div>
+        <h3>কোনো গ্রাফ পাওয়া যায়নি</h3>
+        <p>আপনার সার্চ বা ফিল্টারের সাথে মিলছে না। অন্য কিওয়ার্ড দিয়ে চেষ্টা করুন।</p>
+        <button class="btn btn-primary" id="resetSearchBtn">সব ফিল্টার রিসেট করুন</button>
+      </div>
+
+      <!-- Graph Grid -->
+      <div class="graph-grid" id="graphGrid" data-view="grid">
+        <!-- Graph cards will be populated dynamically -->
+      </div>
+
+      <!-- Graph List View -->
+      <div class="graph-list" id="graphList" data-view="list" aria-hidden="true">
+        <!-- List view items will be populated dynamically -->
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-section">
+        <button class="btn btn-outline btn-load-more" id="loadMoreBtn">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+          আরো গ্রাফ লোড করুন
+        </button>
+        <div class="load-progress" id="loadProgress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="progress-text" id="progressText">0% লোডেড</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Bar -->
+    <div class="quick-actions-bar">
+      <button class="quick-action" id="scrollToTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+      </button>
+      <button class="quick-action" id="downloadAllBtn" aria-label="Download all visible graphs">
+        <i class="fas fa-download" aria-hidden="true"></i>
+      </button>
+      <button class="quick-action" id="shareGalleryBtn" aria-label="Share gallery">
+        <i class="fas fa-share-alt" aria-hidden="true"></i>
+      </button>
+      <button class="quick-action" id="feedbackGalleryBtn" aria-label="Give feedback">
+        <i class="fas fa-comment" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Graph Card Template (Hidden) -->
+<template id="graphCardTemplate">
+  <div class="graph-card" data-graph-id="" data-category="" data-difficulty="">
+    <div class="card-header">
+      <div class="graph-badges">
+        <span class="badge subject-badge"></span>
+        <span class="badge class-badge"></span>
+        <span class="badge type-badge"></span>
+        <span class="badge difficulty-badge"></span>
+      </div>
+      <button class="card-menu-btn" aria-label="Graph options">
+        <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+      </button>
+      <div class="card-dropdown-menu">
+        <button class="dropdown-item favorite-btn">
+          <i class="far fa-heart" aria-hidden="true"></i>
+          ফেভারিটে অ্যাড করুন
+        </button>
+        <button class="dropdown-item download-btn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          ডাউনলোড করুন
+        </button>
+        <button class="dropdown-item share-btn">
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+          শেয়ার করুন
+        </button>
+        <button class="dropdown-item report-btn">
+          <i class="fas fa-flag" aria-hidden="true"></i>
+          রিপোর্ট করুন
+        </button>
+      </div>
+    </div>
+
+    <div class="card-preview">
+      <div class="graph-image-container">
+        <img class="graph-image" src="" alt="" loading="lazy">
+        <div class="graph-overlay">
+          <button class="preview-btn view-btn" aria-label="View graph">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+          <button class="preview-btn interactive-btn" aria-label="Open interactive mode">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="graph-stats">
+        <span class="stat">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+          <span class="stat-count views-count">0</span>
+        </span>
+        <span class="stat">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span class="stat-count downloads-count">0</span>
+        </span>
+        <span class="stat">
+          <i class="fas fa-star" aria-hidden="true"></i>
+          <span class="stat-count rating-count">0</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="card-content">
+      <h3 class="graph-title"></h3>
+      <p class="graph-description"></p>
+      
+      <div class="graph-meta">
+        <div class="meta-item">
+          <i class="fas fa-book" aria-hidden="true"></i>
+          <span class="chapter-name"></span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <span class="duration"></span>
+        </div>
+      </div>
+
+      <div class="graph-tags">
+        <!-- Tags will be populated dynamically -->
+      </div>
+
+      <div class="graph-aliases">
+        <span class="aliases-label">আরও নাম:</span>
+        <div class="aliases-list">
+          <!-- Aliases will be populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button class="btn btn-primary btn-sm open-graph-btn">
+        <i class="fas fa-chart-line" aria-hidden="true"></i>
+        ওপেন করুন
+      </button>
+      <button class="btn btn-outline btn-sm quick-view-btn">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        কুইক ভিউ
+      </button>
+    </div>
+  </div>
+</template>
+<!-- Interactive Learning Hub -->
+<section id="learning-hub" class="learning-hub-section" role="region" aria-labelledby="learning-hub-title">
+  <div class="container">
+    
+    <!-- Learning Hub Header -->
+    <div class="hub-header">
+      <h2 id="learning-hub-title" class="section-title">ইন্টারেক্টিভ লার্নিং হাব</h2>
+      <p class="section-subtitle">গ্রাফ বুঝুন ইন্টারেক্টিভ way-তে</p>
+      
+      <div class="hub-nav">
+        <button class="hub-nav-btn active" data-tab="quiz">
+          <i class="fas fa-brain" aria-hidden="true"></i>
+          কুইজ ও অ্যাসেসমেন্ট
+        </button>
+        <button class="hub-nav-btn" data-tab="progress">
+          <i class="fas fa-trophy" aria-hidden="true"></i>
+          প্রোগ্রেস ট্র্যাকিং
+        </button>
+        <button class="hub-nav-btn" data-tab="interactive">
+          <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+          ইন্টারেক্টিভ টুলস
+        </button>
+        <button class="hub-nav-btn" data-tab="polls">
+          <i class="fas fa-chart-pie" aria-hidden="true"></i>
+          পোলস ও ভোটিং
+        </button>
+      </div>
+    </div>
+
+    <!-- Quiz & Assessment Tab -->
+    <div class="hub-tab-content active" id="quiz-tab" role="tabpanel">
+      <div class="quiz-container">
+        
+        <!-- Quiz Header -->
+        <div class="quiz-header">
+          <div class="quiz-info">
+            <h3>ডেইলি গ্রাফ কুইজ</h3>
+            <p>আপনার গ্রাফ বোঝার দক্ষতা পরীক্ষা করুন</p>
+          </div>
+          <div class="quiz-stats">
+            <div class="stat">
+              <span class="stat-value" id="quizStreak">0</span>
+              <span class="stat-label">ডেইলি স্ট্রীক</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="quizAccuracy">0%</span>
+              <span class="stat-label">সঠিকতা</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="quizRank">-</span>
+              <span class="stat-label">র‍্যাঙ্ক</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Quiz -->
+        <div class="active-quiz" id="activeQuiz">
+          <div class="quiz-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="quizProgressFill"></div>
+            </div>
+            <span class="progress-text" id="quizProgressText">প্রশ্ন ১/৫</span>
+          </div>
+
+          <div class="quiz-question">
+            <div class="question-header">
+              <span class="question-number">প্রশ্ন #1</span>
+              <span class="question-difficulty easy">সহজ</span>
+              <span class="question-timer" id="questionTimer">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <span id="timerValue">30</span>s
+              </span>
+            </div>
+            
+            <h4 class="question-text" id="questionText">
+              ওহমের সূত্র অনুসারে, ভোল্টেজ এবং কারেন্টের সম্পর্ক কী?
+            </h4>
+
+            <!-- Question Media -->
+            <div class="question-media" id="questionMedia">
+              <div class="media-container">
+                <img src="" alt="Question graph" id="questionGraph" style="display: none;">
+                <div class="interactive-graph" id="questionInteractiveGraph" style="display: none;"></div>
+              </div>
+            </div>
+
+            <!-- Question Options -->
+            <div class="question-options" id="questionOptions">
+              <div class="options-grid">
+                <!-- Options will be populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Question Actions -->
+            <div class="question-actions">
+              <button class="btn btn-secondary" id="skipQuestionBtn" disabled>
+                <i class="fas fa-forward" aria-hidden="true"></i>
+                স্কিপ করুন
+              </button>
+              <button class="btn btn-primary" id="submitAnswerBtn" disabled>
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                উত্তর সাবমিট করুন
+              </button>
+            </div>
+          </div>
+
+          <!-- Quiz Feedback -->
+          <div class="quiz-feedback" id="quizFeedback" aria-hidden="true">
+            <div class="feedback-header">
+              <i class="fas fa-check-circle feedback-correct" aria-hidden="true"></i>
+              <i class="fas fa-times-circle feedback-incorrect" aria-hidden="true"></i>
+              <h4 id="feedbackTitle">সঠিক উত্তর!</h4>
+            </div>
+            <p id="feedbackDescription" class="feedback-description">
+              আপনার উত্তর সঠিক হয়েছে। ভোল্টেজ এবং কারেন্ট সরাসরি সমানুপাতিক।
+            </p>
+            <div class="feedback-actions">
+              <button class="btn btn-primary" id="nextQuestionBtn">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                পরবর্তী প্রশ্ন
+              </button>
+              <button class="btn btn-outline" id="reviewQuestionBtn">
+                <i class="fas fa-redo" aria-hidden="true"></i>
+                রিভিউ করুন
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Selection -->
+        <div class="quiz-selection" id="quizSelection">
+          <h4>কুইজ সিলেক্ট করুন</h4>
+          <div class="quiz-cards">
+            <div class="quiz-card" data-quiz-id="daily">
+              <div class="quiz-card-header">
+                <span class="quiz-badge daily">ডেইলি</span>
+                <span class="quiz-difficulty easy">সহজ</span>
+              </div>
+              <h5>ডেইলি চ্যালেঞ্জ</h5>
+              <p>৫টি র‍্যান্ডম প্রশ্ন</p>
+              <div class="quiz-stats">
+                <span><i class="fas fa-users" aria-hidden="true"></i> 1.2K played</span>
+                <span><i class="fas fa-star" aria-hidden="true"></i> 4.8</span>
+              </div>
+              <button class="btn btn-primary btn-sm start-quiz-btn" data-quiz-id="daily">
+                শুরু করুন
+              </button>
+            </div>
+
+            <div class="quiz-card" data-quiz-id="physics">
+              <div class="quiz-card-header">
+                <span class="quiz-badge subject">পদার্থবিজ্ঞান</span>
+                <span class="quiz-difficulty medium">মধ্যম</span>
+              </div>
+              <h5>পদার্থবিজ্ঞান মাস্টারি</h5>
+              <p>১০টি অ্যাডভান্সড প্রশ্ন</p>
+              <div class="quiz-stats">
+                <span><i class="fas fa-users" aria-hidden="true"></i> 856 played</span>
+                <span><i class="fas fa-star" aria-hidden="true"></i> 4.5</span>
+              </div>
+              <button class="btn btn-primary btn-sm start-quiz-btn" data-quiz-id="physics">
+                শুরু করুন
+              </button>
+            </div>
+
+            <div class="quiz-card" data-quiz-id="chemistry">
+              <div class="quiz-card-header">
+                <span class="quiz-badge subject">রসায়ন</span>
+                <span class="quiz-difficulty hard">কঠিন</span>
+              </div>
+              <h5>রসায়ন এক্সপার্ট</h5>
+              <p>১৫টি চ্যালেঞ্জিং প্রশ্ন</p>
+              <div class="quiz-stats">
+                <span><i class="fas fa-users" aria-hidden="true"></i> 542 played</span>
+                <span><i class="fas fa-star" aria-hidden="true"></i> 4.7</span>
+              </div>
+              <button class="btn btn-primary btn-sm start-quiz-btn" data-quiz-id="chemistry">
+                শুরু করুন
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Results -->
+        <div class="quiz-results" id="quizResults" aria-hidden="true">
+          <div class="results-header">
+            <div class="results-icon">
+              <i class="fas fa-trophy" aria-hidden="true"></i>
+            </div>
+            <h3>কুইজ সম্পন্ন!</h3>
+            <p class="results-subtitle">আপনার পারফরম্যান্স সামারি</p>
+          </div>
+
+          <div class="results-stats">
+            <div class="result-stat">
+              <span class="stat-value" id="finalScore">0</span>
+              <span class="stat-label">স্কোর</span>
+            </div>
+            <div class="result-stat">
+              <span class="stat-value" id="correctAnswers">0</span>
+              <span class="stat-label">সঠিক উত্তর</span>
+            </div>
+            <div class="result-stat">
+              <span class="stat-value" id="timeSpent">0s</span>
+              <span class="stat-label">সময়</span>
+            </div>
+            <div class="result-stat">
+              <span class="stat-value" id="accuracyRate">0%</span>
+              <span class="stat-label">সঠিকতা</span>
+            </div>
+          </div>
+
+          <div class="results-breakdown">
+            <h4>বিস্তারিত বিশ্লেষণ</h4>
+            <div class="breakdown-chart" id="breakdownChart"></div>
+          </div>
+
+          <div class="results-actions">
+            <button class="btn btn-primary" id="retryQuizBtn">
+              <i class="fas fa-redo" aria-hidden="true"></i>
+              আবার চেষ্টা করুন
+            </button>
+            <button class="btn btn-secondary" id="reviewAnswersBtn">
+              <i class="fas fa-list-ol" aria-hidden="true"></i>
+              উত্তর রিভিউ করুন
+            </button>
+            <button class="btn btn-outline" id="shareResultsBtn">
+              <i class="fas fa-share-alt" aria-hidden="true"></i>
+              শেয়ার করুন
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Tracking Tab -->
+    <div class="hub-tab-content" id="progress-tab" role="tabpanel" aria-hidden="true">
+      <div class="progress-dashboard">
+        
+        <!-- Progress Overview -->
+        <div class="progress-overview">
+          <h3>আপনার লার্নিং প্রোগ্রেস</h3>
+          
+          <div class="progress-cards">
+            <div class="progress-card">
+              <div class="progress-icon">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+              </div>
+              <div class="progress-info">
+                <span class="progress-value" id="totalGraphsViewed">0</span>
+                <span class="progress-label">গ্রাফ দেখা হয়েছে</span>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-icon">
+                <i class="fas fa-brain" aria-hidden="true"></i>
+              </div>
+              <div class="progress-info">
+                <span class="progress-value" id="quizzesCompleted">0</span>
+                <span class="progress-label">কুইজ সম্পন্ন</span>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-icon">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="progress-info">
+                <span class="progress-value" id="totalLearningTime">0h</span>
+                <span class="progress-label">লার্নিং সময়</span>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-icon">
+                <i class="fas fa-trophy" aria-hidden="true"></i>
+              </div>
+              <div class="progress-info">
+                <span class="progress-value" id="achievementsUnlocked">0</span>
+                <span class="progress-label">অর্জন</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Analytics -->
+        <div class="learning-analytics">
+          <div class="analytics-header">
+            <h4>লার্নিং অ্যানালিটিক্স</h4>
+            <div class="analytics-filters">
+              <select id="analyticsTimeRange" class="filter-select">
+                <option value="7d">সপ্তাহ ১</option>
+                <option value="30d">মাস ১</option>
+                <option value="90d">মাস ৩</option>
+                <option value="1y">বছর ১</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="analytics-charts">
+            <div class="chart-container">
+              <h5>সাপ্তাহিক অ্যাক্টিভিটি</h5>
+              <div class="activity-chart" id="activityChart"></div>
+            </div>
+            
+            <div class="chart-container">
+              <h5>বিষয়ভিত্তিক প্রোগ্রেস</h5>
+              <div class="subject-chart" id="subjectChart"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="achievements-section">
+          <h4>আপনার অর্জনসমূহ</h4>
+          <div class="achievements-grid" id="achievementsGrid">
+            <!-- Achievements will be populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Learning Goals -->
+        <div class="learning-goals">
+          <h4>লার্নিং গোলস</h4>
+          <div class="goals-list" id="goalsList">
+            <!-- Goals will be populated dynamically -->
+          </div>
+          
+          <button class="btn btn-outline" id="addGoalBtn">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            নতুন গোল অ্যাড করুন
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Interactive Tools Tab -->
+    <div class="hub-tab-content" id="interactive-tab" role="tabpanel" aria-hidden="true">
+      <div class="interactive-tools">
+        
+        <!-- Tools Header -->
+        <div class="tools-header">
+          <h3>ইন্টারেক্টিভ লার্নিং টুলস</h3>
+          <p>গ্রাফ নিয়ে এক্সপেরিমেন্ট করুন এবং গভীরভাবে বুঝুন</p>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid">
+          
+          <!-- Graph Comparator -->
+          <div class="tool-card" data-tool="comparator">
+            <div class="tool-icon">
+              <i class="fas fa-balance-scale" aria-hidden="true"></i>
+            </div>
+            <h4>গ্রাফ কম্পেয়ারেটর</h4>
+            <p>দুইটি গ্রাফ পাশাপাশি compare করুন এবং পার্থক্য বিশ্লেষণ করুন</p>
+            <div class="tool-features">
+              <span class="feature-tag">সাইড-বাই-সাইড</span>
+              <span class="feature-tag">ডিফারেন্স হাইলাইট</span>
+              <span class="feature-tag">স্ট্যাটিস্টিক্স</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="comparator">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+
+          <!-- Graph Simulator -->
+          <div class="tool-card" data-tool="simulator">
+            <div class="tool-icon">
+              <i class="fas fa-sliders-h" aria-hidden="true"></i>
+            </div>
+            <h4>গ্রাফ সিমুলেটর</h4>
+            <p>প্যারামিটার change করে দেখুন কিভাবে গ্রাফ পরিবর্তন হয়</p>
+            <div class="tool-features">
+              <span class="feature-tag">রিয়েল-টাইম আপডেট</span>
+              <span class="feature-tag">মাল্টিপল ভেরিয়েবল</span>
+              <span class="feature-tag">ডেটা এক্সপোর্ট</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="simulator">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+
+          <!-- Equation Solver -->
+          <div class="tool-card" data-tool="solver">
+            <div class="tool-icon">
+              <i class="fas fa-calculator" aria-hidden="true"></i>
+            </div>
+            <h4>ইকুয়েশন সলভার</h4>
+            <p>গাণিতিক সমীকরণ solve করুন এবং গ্রাফ দেখুন</p>
+            <div class="tool-features">
+              <span class="feature-tag">অটো-প্লটিং</span>
+              <span class="feature-tag">স্টেপ-বাই-স্টেপ সলিউশন</span>
+              <span class="feature-tag">মাল্টিপল মেথড</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="solver">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+
+          <!-- 3D Visualizer -->
+          <div class="tool-card" data-tool="visualizer">
+            <div class="tool-icon">
+              <i class="fas fa-cube" aria-hidden="true"></i>
+            </div>
+            <h4>3D ভিজুয়ালাইজার</h4>
+            <p>ত্রিমাত্রিক গ্রাফ explore করুন এবং interact করুন</p>
+            <div class="tool-features">
+              <span class="feature-tag">360° ভিউ</span>
+              <span class="feature-tag">জুম ও প্যান</span>
+              <span class="feature-tag">মাল্টি-এঙ্গেল</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="visualizer">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+
+          <!-- Data Analyzer -->
+          <div class="tool-card" data-tool="analyzer">
+            <div class="tool-icon">
+              <i class="fas fa-chart-bar" aria-hidden="true"></i>
+            </div>
+            <h4>ডেটা অ্যানালাইজার</h4>
+            <p>আপনার নিজের ডেটা import করুন এবং গ্রাফ তৈরি করুন</p>
+            <div class="tool-features">
+              <span class="feature-tag">CSV/JSON ইম্পোর্ট</span>
+              <span class="feature-tag">অটো-চার্ট জেনারেশন</span>
+              <span class="feature-tag">স্ট্যাটিস্টিক্যাল অ্যানালিসিস</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="analyzer">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+
+          <!-- Collaboration Tool -->
+          <div class="tool-card" data-tool="collaboration">
+            <div class="tool-icon">
+              <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <h4>কলাবোরেশন স্টুডিও</h4>
+            <p>বন্ধুদের সাথে গ্রাফ নিয়ে collaborativeভাবে কাজ করুন</p>
+            <div class="tool-features">
+              <span class="feature-tag">রিয়েল-টাইম কলাবোরেশন</span>
+              <span class="feature-tag">ভয়েস চ্যাট</span>
+              <span class="feature-tag">শেয়ার্ড ওয়ার্কস্পেস</span>
+            </div>
+            <button class="btn btn-primary btn-sm launch-tool-btn" data-tool="collaboration">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+              লঞ্চ করুন
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Workspace -->
+        <div class="interactive-workspace" id="interactiveWorkspace" aria-hidden="true">
+          <div class="workspace-header">
+            <h4 id="workspaceTitle">ইন্টারেক্টিভ ওয়ার্কস্পেস</h4>
+            <div class="workspace-controls">
+              <button class="btn btn-outline btn-sm" id="saveWorkspaceBtn">
+                <i class="fas fa-save" aria-hidden="true"></i>
+                সেভ করুন
+              </button>
+              <button class="btn btn-outline btn-sm" id="resetWorkspaceBtn">
+                <i class="fas fa-redo" aria-hidden="true"></i>
+                রিসেট
+              </button>
+              <button class="btn btn-outline btn-sm" id="closeWorkspaceBtn">
+                <i class="fas fa-times" aria-hidden="true"></i>
+                বন্ধ করুন
+              </button>
+            </div>
+          </div>
+          
+          <div class="workspace-content" id="workspaceContent">
+            <!-- Tool-specific content will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Polls & Voting Tab -->
+    <div class="hub-tab-content" id="polls-tab" role="tabpanel" aria-hidden="true">
+      <div class="polls-container">
+        
+        <!-- Active Polls -->
+        <div class="active-polls">
+          <h3>সক্রিয় পোলস</h3>
+          
+          <div class="poll-card active">
+            <div class="poll-header">
+              <span class="poll-badge">লাইভ</span>
+              <span class="poll-timer">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                ২ দিন বাকি
+              </span>
+            </div>
+            
+            <h4 class="poll-question">
+              পদার্থবিজ্ঞানের কোন টপিক সবচেয়ে কঠিন লাগে?
+            </h4>
+            
+            <div class="poll-options">
+              <div class="poll-option">
+                <label class="option-label">
+                  <input type="radio" name="poll1" value="thermodynamics">
+                  <span class="option-text">তাপগতিবিদ্যা</span>
+                </label>
+                <div class="option-bar">
+                  <div class="option-fill" style="width: 35%"></div>
+                  <span class="option-percent">35%</span>
+                </div>
+              </div>
+              
+              <div class="poll-option">
+                <label class="option-label">
+                  <input type="radio" name="poll1" value="electromagnetism">
+                  <span class="option-text">ইলেক্ট্রোম্যাগনেটিজম</span>
+                </label>
+                <div class="option-bar">
+                  <div class="option-fill" style="width: 28%"></div>
+                  <span class="option-percent">28%</span>
+                </div>
+              </div>
+              
+              <div class="poll-option">
+                <label class="option-label">
+                  <input type="radio" name="poll1" value="optics">
+                  <span class="option-text">অপটিক্স</span>
+                </label>
+                <div class="option-bar">
+                  <div class="option-fill" style="width: 22%"></div>
+                  <span class="option-percent">22%</span>
+                </div>
+              </div>
+              
+              <div class="poll-option">
+                <label class="option-label">
+                  <input type="radio" name="poll1" value="mechanics">
+                  <span class="option-text">মেকানিক্স</span>
+                </label>
+                <div class="option-bar">
+                  <div class="option-fill" style="width: 15%"></div>
+                  <span class="option-percent">15%</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="poll-stats">
+              <span class="stat">
+                <i class="fas fa-users" aria-hidden="true"></i>
+                ১,২৪৫ ভোট
+              </span>
+              <span class="stat">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                লাইভ রেজাল্ট
+              </span>
+            </div>
+            
+            <div class="poll-actions">
+              <button class="btn btn-primary btn-sm submit-vote-btn">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                ভোট দিন
+              </button>
+              <button class="btn btn-outline btn-sm share-poll-btn">
+                <i class="fas fa-share-alt" aria-hidden="true"></i>
+                শেয়ার করুন
+              </button>
+            </div>
+          </div>
+
+          <!-- More poll cards can be added here -->
+        </div>
+
+        <!-- Poll Archive -->
+        <div class="poll-archive">
+          <h4>পূর্বের পোলস</h4>
+          <div class="archive-list" id="pollArchive">
+            <!-- Archived polls will be populated here -->
+          </div>
+        </div>
+
+        <!-- Create Poll (for logged-in users) -->
+        <div class="create-poll-section">
+          <h4>নতুন পোল তৈরি করুন</h4>
+          <form class="create-poll-form" id="createPollForm">
+            <div class="form-group">
+              <label for="pollQuestionInput">পোল প্রশ্ন</label>
+              <input type="text" id="pollQuestionInput" class="form-control" 
+                     placeholder="আপনার প্রশ্ন লিখুন..." required>
+            </div>
+            
+            <div class="form-group">
+              <label>অপশনস</label>
+              <div class="poll-options-inputs" id="pollOptionsInputs">
+                <div class="option-input-group">
+                  <input type="text" class="form-control option-input" 
+                         placeholder="অপশন ১" required>
+                  <button type="button" class="btn-remove-option" aria-label="Remove option">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div class="option-input-group">
+                  <input type="text" class="form-control option-input" 
+                         placeholder="অপশন ২" required>
+                  <button type="button" class="btn-remove-option" aria-label="Remove option">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline btn-sm" id="addPollOptionBtn">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                আরো অপশন অ্যাড করুন
+              </button>
+            </div>
+            
+            <div class="form-group">
+              <label for="pollDuration">পোল সময়সীমা</label>
+              <select id="pollDuration" class="form-control">
+                <option value="1">১ দিন</option>
+                <option value="3">৩ দিন</option>
+                <option value="7">১ সপ্তাহ</option>
+                <option value="30">১ মাস</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+              পোল তৈরি করুন
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Community & Feedback Section -->
+<section id="community" class="community-section" role="region" aria-labelledby="community-title">
+  <div class="container">
+    
+    <!-- Community Header -->
+    <div class="section-header">
+      <h2 id="community-title" class="section-title">কমিউনিটি ও ফিডব্যাক</h2>
+      <p class="section-subtitle">আপনার মতামত শেয়ার করুন এবং অন্যান্য শিক্ষার্থীদের সাথে connect করুন</p>
+    </div>
+
+    <div class="community-grid">
+      
+      <!-- Feedback Form -->
+      <div class="community-card feedback-card">
+        <h3>ফিডব্যাক দিন</h3>
+        <p>আপনার অভিজ্ঞতা শেয়ার করুন এবং আমাদের উন্নতিতে সাহায্য করুন</p>
+        
+        <form class="feedback-form" id="feedbackForm">
+          <div class="form-group">
+            <label for="feedbackType">ফিডব্যাক টাইপ</label>
+            <select id="feedbackType" class="form-control" required>
+              <option value="">সিলেক্ট করুন</option>
+              <option value="suggestion">সাজেশন</option>
+              <option value="bug">বাগ রিপোর্ট</option>
+              <option value="feature">নতুন ফিচার রিকোয়েস্ট</option>
+              <option value="general">সাধারণ ফিডব্যাক</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="feedbackGraph">সম্পর্কিত গ্রাফ (ঐচ্ছিক)</label>
+            <select id="feedbackGraph" class="form-control">
+              <option value="">সিলেক্ট করুন</option>
+              <!-- Graphs will be populated dynamically -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="feedbackMessage">আপনার ফিডব্যাক</label>
+            <textarea id="feedbackMessage" class="form-control" 
+                      placeholder="আপনার মূল্যবান মতামত লিখুন..." 
+                      rows="5" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="feedbackRating">রেটিং</label>
+            <div class="rating-stars" id="feedbackRating">
+              <span class="star" data-rating="1">★</span>
+              <span class="star" data-rating="2">★</span>
+              <span class="star" data-rating="3">★</span>
+              <span class="star" data-rating="4">★</span>
+              <span class="star" data-rating="5">★</span>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            ফিডব্যাক সাবমিট করুন
+          </button>
+        </form>
+      </div>
+
+      <!-- Community Stats -->
+      <div class="community-card stats-card">
+        <h3>কমিউনিটি স্ট্যাটস</h3>
+        
+        <div class="community-stats">
+          <div class="community-stat">
+            <div class="stat-icon">
+              <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="communityMembers">10,245+</span>
+              <span class="stat-label">সদস্য</span>
+            </div>
+          </div>
+          
+          <div class="community-stat">
+            <div class="stat-icon">
+              <i class="fas fa-comments" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="communityFeedback">2,847</span>
+              <span class="stat-label">ফিডব্যাক</span>
+            </div>
+          </div>
+          
+          <div class="community-stat">
+            <div class="stat-icon">
+              <i class="fas fa-lightbulb" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="communityIdeas">156</span>
+              <span class="stat-label">ফিচার আইডিয়া</span>
+            </div>
+          </div>
+          
+          <div class="community-stat">
+            <div class="stat-icon">
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="communityGrowth">+28%</span>
+              <span class="stat-label">মাসিক বৃদ্ধি</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="community-actions">
+          <button class="btn btn-outline" id="joinCommunityBtn">
+            <i class="fas fa-user-plus" aria-hidden="true"></i>
+            কমিউনিটিতে যোগ দিন
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Feedback -->
+      <div class="community-card recent-feedback-card">
+        <h3>সাম্প্রতিক ফিডব্যাক</h3>
+        
+        <div class="feedback-list" id="recentFeedbackList">
+          <!-- Feedback items will be populated dynamically -->
+        </div>
+        
+        <button class="btn btn-text view-all-feedback-btn" id="viewAllFeedbackBtn">
+          <i class="fas fa-list" aria-hidden="true"></i>
+          সব ফিডব্যাক দেখুন
+        </button>
+      </div>
+
+      <!-- Feature Requests -->
+      <div class="community-card feature-requests-card">
+        <h3>ফিচার রিকোয়েস্টস</h3>
+        <p>আপনি কোন নতুন ফিচার চান? ভোট দিন অথবা নতুন রিকোয়েস্ট করুন</p>
+        
+        <div class="feature-requests-list" id="featureRequestsList">
+          <!-- Feature requests will be populated dynamically -->
+        </div>
+        
+        <button class="btn btn-outline" id="requestFeatureBtn">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+          নতুন ফিচার রিকোয়েস্ট করুন
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About & Contact Sections -->
+<section id="about-contact" class="about-contact-section" role="region">
+  <div class="container">
+    
+    <!-- About Section -->
+    <div class="about-section" id="about">
+      <div class="about-content">
+        <div class="about-text">
+          <h2 class="section-title">Graphz সম্পর্কে</h2>
+          
+          <div class="about-description">
+            <p>
+              <strong>Graphz</strong> হল একটি রিভোলিউশনারি এডুকেশনাল প্ল্যাটফর্ম যা ক্লাস ১১-১২ এর 
+              পদার্থবিজ্ঞান ও রসায়ন গ্রাফগুলিকে ইন্টারেক্টিভ এবং engaging way-তে উপস্থাপন করে।
+            </p>
+            
+            <p>
+              আমাদের মিশন হল প্রতিটি শিক্ষার্থীকে গ্রাফের মাধ্যমে complex concepts সহজে বুঝতে সাহায্য করা, 
+              AI-powered recommendations দিয়ে personalized learning experience দেওয়া, এবং 
+              একটি collaborative environment তৈরি করা যেখানে সবাই একসাথে শিখতে পারে।
+            </p>
+          </div>
+
+          <!-- Mission & Vision -->
+          <div class="mission-vision-grid">
+            <div class="mv-card">
+              <div class="mv-icon">
+                <i class="fas fa-bullseye" aria-hidden="true"></i>
+              </div>
+              <h4>আমাদের মিশন</h4>
+              <p>গ্রাফ-based learning-কে accessible, interactive এবং effective করা প্রতিটি শিক্ষার্থীর জন্য</p>
+            </div>
+            
+            <div class="mv-card">
+              <div class="mv-icon">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </div>
+              <h4>আমাদের ভিশন</h4>
+              <p>বাংলাদেশ এবং সারা বিশ্বের শিক্ষার্থীদের জন্য best-in-class visual learning platform তৈরি করা</p>
+            </div>
+            
+            <div class="mv-card">
+              <div class="mv-icon">
+                <i class="fas fa-handshake" aria-hidden="true"></i>
+              </div>
+              <h4>আমাদের মান</h4>
+              <p>Quality, innovation, accessibility এবং user satisfaction - এই values-এর উপর focus</p>
+            </div>
+          </div>
+
+          <!-- Team Info -->
+         <div class="team-section">
+                <h4>আমাদের টিম</h4>
+                <div class="team-grid">
+                  <div class="team-member">
+                    <div class="member-avatar">
+                      <i class="fas fa-user" aria-hidden="true"></i>
+                    </div>
+                    <div class="member-info">
+                      <h5>জুয়েল</h5>
+                      <span class="member-role">ফাউন্ডার & ডেভেলপার</span>
+                    </div>
+                  </div>
+                  <!-- More team members can be added -->
+                </div>
+              </div>
+            </div>
+
+            <div class="about-stats">
+              <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">ইন্টারেক্টিভ গ্রাফ</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">সক্রিয় শিক্ষার্থী</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">সাফল্যের হার</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">সাপোর্ট Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact">
+          <div class="contact-content">
+            <div class="contact-info">
+              <h2 class="section-title">যোগাযোগ করুন</h2>
+              <p>আমাদের সাথে যোগাযোগ করতে নিচের ফর্মটি ব্যবহার করুন। আমরা ২৪ ঘন্টার মধ্যে রিপ্লাই দেব।</p>
+              
+              <div class="contact-methods">
+                <div class="contact-method">
+                  <div class="method-icon">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                  </div>
+                  <div class="method-info">
+                    <h5>ইমেইল</h5>
+                    <span>support@graphz-learning.com</span>
+                  </div>
+                </div>
+                
+                <div class="contact-method">
+                  <div class="method-icon">
+                    <i class="fas fa-clock" aria-hidden="true"></i>
+                  </div>
+                  <div class="method-info">
+                    <h5>রেসপন্স টাইম</h5>
+                    <span>২৪ ঘন্টার মধ্যে</span>
+                  </div>
+                </div>
+                
+                <div class="contact-method">
+                  <div class="method-icon">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                  </div>
+                  <div class="method-info">
+                    <h5>লanguages</h5>
+                    <span>বাংলা, English</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div class="social-links-section">
+                <h5>আমাদের ফলো করুন</h5>
+                <div class="social-links">
+                  <a href="#" class="social-link" aria-label="Facebook">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                  </a>
+                  <a href="#" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                  </a>
+                  <a href="#" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                  </a>
+                  <a href="#" class="social-link" aria-label="GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                  <a href="#" class="social-link" aria-label="YouTube">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-container">
+              <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                  <label for="contactName">আপনার নাম *</label>
+                  <input type="text" id="contactName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="contactEmail">ইমেইল এড্রেস *</label>
+                  <input type="email" id="contactEmail" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="contactSubject">বিষয় *</label>
+                  <select id="contactSubject" class="form-control" required>
+                    <option value="">সিলেক্ট করুন</option>
+                    <option value="support">টেকনিক্যাল সাপোর্ট</option>
+                    <option value="feature">ফিচার রিকোয়েস্ট</option>
+                    <option value="bug">বাগ রিপোর্ট</option>
+                    <option value="partnership">পার্টনারশিপ</option>
+                    <option value="general">সাধারণ ইনকোয়ারি</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="contactMessage">মেসেজ *</label>
+                  <textarea id="contactMessage" class="form-control" rows="6" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="contactConsent" required>
+                    <span class="checkmark"></span>
+                    আমি Graphz-এর Privacy Policy এবং Terms of Service-এর সাথে agree করছি
+                  </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                  <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                  মেসেজ সেন্ড করুন
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- Footer Section -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      
+      <!-- Main Footer Content -->
+      <div class="footer-content">
+        
+        <!-- Brand & Description -->
+        <div class="footer-section brand-section">
+          <div class="footer-brand">
+            <div class="logo">
+              <i class="fas fa-chart-network logo-icon" aria-hidden="true"></i>
+              <div class="logo-text">
+                <h3 class="logo-title">Graphz</h3>
+                <span class="logo-subtitle">Learn Visually</span>
+              </div>
+            </div>
+          </div>
+          
+          <p class="footer-description">
+            Graphz হল একটি AI-powered educational platform যেখানে ক্লাস ১১-১২ এর 
+            Physics & Chemistry গ্রাফগুলো interactive way-তে শেখা যায়।
+          </p>
+          
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <i class="fab fa-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-section links-section">
+          <h4 class="footer-title">দ্রুত লিংক</h4>
+          <ul class="footer-links">
+            <li><a href="#home" class="footer-link">হোম</a></li>
+            <li><a href="#gallery" class="footer-link">গ্রাফ গ্যালারি</a></li>
+            <li><a href="#quiz" class="footer-link">কুইজ ও অ্যাসেসমেন্ট</a></li>
+            <li><a href="#progress" class="footer-link">প্রোগ্রেস ট্র্যাকিং</a></li>
+            <li><a href="#community" class="footer-link">কমিউনিটি</a></li>
+            <li><a href="#about" class="footer-link">About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="footer-section resources-section">
+          <h4 class="footer-title">রিসোর্সেস</h4>
+          <ul class="footer-links">
+            <li><a href="#physics-graphs" class="footer-link">পদার্থবিজ্ঞান গ্রাফ</a></li>
+            <li><a href="#chemistry-graphs" class="footer-link">রসায়ন গ্রাফ</a></li>
+            <li><a href="#interactive-tools" class="footer-link">ইন্টারেক্টিভ টুলস</a></li>
+            <li><a href="#learning-paths" class="footer-link">লার্নিং পাথ</a></li>
+            <li><a href="#study-materials" class="footer-link">স্টাডি মেটেরিয়ালস</a></li>
+            <li><a href="#video-tutorials" class="footer-link">ভিডিও টিউটোরিয়াল</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section support-section">
+          <h4 class="footer-title">সাপোর্ট</h4>
+          <ul class="footer-links">
+            <li><a href="#help-center" class="footer-link">হেল্প সেন্টার</a></li>
+            <li><a href="#contact" class="footer-link">যোগাযোগ</a></li>
+            <li><a href="#faq" class="footer-link">FAQ</a></li>
+            <li><a href="#privacy-policy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="#terms-of-service" class="footer-link">Terms of Service</a></li>
+            <li><a href="#cookie-policy" class="footer-link">Cookie Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter & Contact -->
+        <div class="footer-section newsletter-section">
+          <h4 class="footer-title">নিউজলেটার</h4>
+          <p class="newsletter-description">
+            নতুন গ্রাফ এবং ফিচার সম্পর্কে সবার আগে জানতে সাবস্ক্রাইব করুন।
+          </p>
+          
+          <form class="newsletter-form" id="newsletterForm">
+            <div class="input-group">
+              <input type="email" 
+                     class="form-control" 
+                     placeholder="আপনার ইমেইল এড্রেস"
+                     aria-label="Email for newsletter"
+                     required>
+              <button type="submit" class="btn btn-primary" aria-label="Subscribe">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </div>
+          </form>
+
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>support@graphz-learning.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <span>২৪/৭ সাপোর্ট</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <div class="copyright">
+            <p>&copy; <span id="currentYear">2024</span> Graphz Learning Platform. All rights reserved.</p>
+          </div>
+          
+          <div class="footer-bottom-links">
+            <a href="#privacy" class="footer-link">Privacy</a>
+            <a href="#terms" class="footer-link">Terms</a>
+            <a href="#sitemap" class="footer-link">Sitemap</a>
+            <a href="#accessibility" class="footer-link">Accessibility</a>
+          </div>
+
+          <div class="language-selector">
+            <select id="footerLanguage" class="language-select" aria-label="Select language">
+              <option value="bn">বাংলা</option>
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+  </footer>
+</main>
+
+<!-- ============================================= -->
+<!-- MODALS & OVERLAYS -->
+<!-- ============================================= -->
+
+<!-- Graph Detail Modal -->
+<div id="graphDetailModal" class="modal" role="dialog" aria-labelledby="graphModalTitle" aria-hidden="true">
+  <div class="modal-overlay" id="graphModalOverlay"></div>
+  
+  <div class="modal-container graph-modal">
+    <div class="modal-header">
+      <div class="modal-title-section">
+        <h2 id="graphModalTitle" class="modal-title">Graph Title</h2>
+        <div class="modal-badges" id="graphModalBadges">
+          <!-- Badges will be populated dynamically -->
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="modal-action-btn favorite-btn" aria-label="Add to favorites">
+          <i class="far fa-heart" aria-hidden="true"></i>
+        </button>
+        <button class="modal-action-btn share-btn" aria-label="Share graph">
+          <i class="fas fa-share-alt" aria-hidden="true"></i>
+        </button>
+        <button class="modal-action-btn close-modal" id="closeGraphModal" aria-label="Close modal">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- Graph Visualization Area -->
+      <div class="graph-visualization-section">
+        <div class="graph-display-container">
+          
+          <!-- Static Image Display -->
+          <div class="graph-static-view" id="graphStaticView">
+            <img id="modalGraphImage" src="" alt="" class="graph-image">
+            <div class="graph-overlay-controls">
+              <button class="overlay-btn zoom-btn" id="zoomImageBtn" aria-label="Zoom image">
+                <i class="fas fa-search-plus" aria-hidden="true"></i>
+              </button>
+              <button class="overlay-btn fullscreen-btn" id="fullscreenImageBtn" aria-label="Fullscreen">
+                <i class="fas fa-expand" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Graph Display -->
+          <div class="graph-interactive-view" id="graphInteractiveView" style="display: none;">
+            <div class="interactive-graph-container" id="interactiveGraphContainer"></div>
+            
+            <!-- Interactive Controls -->
+            <div class="interactive-controls" id="interactiveControls">
+              <div class="control-group">
+                <label for="parameterSlider">প্যারামিটার:</label>
+                <input type="range" id="parameterSlider" class="parameter-slider" min="0" max="100" value="50">
+                <span id="parameterValue">50</span>
+              </div>
+              
+              <div class="control-buttons">
+                <button class="btn btn-outline btn-sm" id="resetGraphBtn">
+                  <i class="fas fa-redo" aria-hidden="true"></i>
+                  রিসেট
+                </button>
+                <button class="btn btn-outline btn-sm" id="animateGraphBtn">
+                  <i class="fas fa-play" aria-hidden="true"></i>
+                  অ্যানিমেট
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- View Toggle -->
+          <div class="view-toggle">
+            <button class="view-toggle-btn active" data-view="static">
+              <i class="fas fa-image" aria-hidden="true"></i>
+              স্ট্যাটিক
+            </button>
+            <button class="view-toggle-btn" data-view="interactive">
+              <i class="fas fa-sliders-h" aria-hidden="true"></i>
+              ইন্টারেক্টিভ
+            </button>
+            <button class="view-toggle-btn" data-view="3d">
+              <i class="fas fa-cube" aria-hidden="true"></i>
+              3D ভিউ
+            </button>
+          </div>
+        </div>
+
+        <!-- Graph Actions -->
+        <div class="graph-actions-panel">
+          <button class="action-btn primary-action" id="downloadGraphBtn">
+            <i class="fas fa-download" aria-hidden="true"></i>
+            ডাউনলোড করুন
+          </button>
+          
+          <div class="secondary-actions">
+            <button class="action-btn" id="printGraphBtn" aria-label="Print graph">
+              <i class="fas fa-print" aria-hidden="true"></i>
+            </button>
+            <button class="action-btn" id="embedGraphBtn" aria-label="Embed graph">
+              <i class="fas fa-code" aria-hidden="true"></i>
+            </button>
+            <button class="action-btn" id="reportGraphBtn" aria-label="Report graph">
+              <i class="fas fa-flag" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Information Tabs -->
+      <div class="graph-info-tabs">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="details">বিস্তারিত</button>
+          <button class="tab-btn" data-tab="explanation">ব্যাখ্যা</button>
+          <button class="tab-btn" data-tab="applications">অ্যাপ্লিকেশন</button>
+          <button class="tab-btn" data-tab="related">সম্পর্কিত</button>
+          <button class="tab-btn" data-tab="feedback">ফিডব্যাক</button>
+        </div>
+
+        <div class="tab-content">
+          
+          <!-- Details Tab -->
+          <div class="tab-pane active" id="detailsTab">
+            <div class="info-grid">
+              <div class="info-item">
+                <label>বিষয়:</label>
+                <span id="infoSubject">-</span>
+              </div>
+              <div class="info-item">
+                <label>ক্লাস:</label>
+                <span id="infoClass">-</span>
+              </div>
+              <div class="info-item">
+                <label>অধ্যায়:</label>
+                <span id="infoChapter">-</span>
+              </div>
+              <div class="info-item">
+                <label>কঠিনতা:</label>
+                <span id="infoDifficulty">-</span>
+              </div>
+              <div class="info-item">
+                <label>সূত্র/সমীকরণ:</label>
+                <span id="infoEquation">-</span>
+              </div>
+              <div class="info-item">
+                <label>উৎস:</label>
+                <span id="infoSource">-</span>
+              </div>
+              <div class="info-item full-width">
+                <label>অন্যান্য নাম:</label>
+                <div class="aliases-list" id="modalAliasesList"></div>
+              </div>
+              <div class="info-item full-width">
+                <label>ট্যাগস:</label>
+                <div class="tags-list" id="modalTagsList"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explanation Tab -->
+          <div class="tab-pane" id="explanationTab">
+            <div class="explanation-content">
+              <h4>গ্রাফ ব্যাখ্যা</h4>
+              <div id="graphExplanation">
+                <!-- Explanation content will be populated -->
+              </div>
+              
+              <div class="key-points">
+                <h5>Key Points:</h5>
+                <ul id="keyPointsList">
+                  <!-- Key points will be populated -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Applications Tab -->
+          <div class="tab-pane" id="applicationsTab">
+            <div class="applications-content">
+              <h4>রিয়েল-লাইফ অ্যাপ্লিকেশন</h4>
+              <div id="realLifeApplications">
+                <!-- Applications content will be populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Tab -->
+          <div class="tab-pane" id="relatedTab">
+            <div class="related-content">
+              <h4>সম্পর্কিত গ্রাফ</h4>
+              <div class="related-graphs-grid" id="relatedGraphsGrid">
+                <!-- Related graphs will be populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Feedback Tab -->
+          <div class="tab-pane" id="feedbackTab">
+            <div class="feedback-content">
+              <h4>ইউজার ফিডব্যাক</h4>
+              
+              <!-- Feedback Stats -->
+              <div class="feedback-stats">
+                <div class="feedback-stat">
+                  <span class="stat-value" id="averageRating">0.0</span>
+                  <span class="stat-label">গড় রেটিং</span>
+                </div>
+                <div class="feedback-stat">
+                  <span class="stat-value" id="totalReviews">0</span>
+                  <span class="stat-label">রিভিউ</span>
+                </div>
+                <div class="feedback-stat">
+                  <span class="stat-value" id="helpfulVotes">0</span>
+                  <span class="stat-label">হেল্পফুল</span>
+                </div>
+              </div>
+
+              <!-- Add Feedback -->
+              <div class="add-feedback-section">
+                <h5>আপনার ফিডব্যাক দিন</h5>
+                <form class="feedback-form" id="graphFeedbackForm">
+                  <div class="rating-input">
+                    <label>রেটিং:</label>
+                    <div class="star-rating" id="graphStarRating">
+                      <span class="star" data-rating="1">★</span>
+                      <span class="star" data-rating="2">★</span>
+                      <span class="star" data-rating="3">★</span>
+                      <span class="star" data-rating="4">★</span>
+                      <span class="star" data-rating="5">★</span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="graphFeedbackComment">কমেন্ট:</label>
+                    <textarea id="graphFeedbackComment" 
+                              class="form-control" 
+                              placeholder="আপনার মূল্যবান মতামত লিখুন..."
+                              rows="3"></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    সাবমিট করুন
+                  </button>
+                </form>
+              </div>
+
+              <!-- Reviews List -->
+              <div class="reviews-list" id="graphReviewsList">
+                <!-- Reviews will be populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="modal-stats">
+        <span class="stat">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+          <span id="modalViewCount">0</span> ভিউ
+        </span>
+        <span class="stat">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span id="modalDownloadCount">0</span> ডাউনলোড
+        </span>
+        <span class="stat">
+          <i class="fas fa-calendar" aria-hidden="true"></i>
+          Added <span id="modalAddedDate">-</span>
+        </span>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="prevGraphBtn">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          পূর্বের
+        </button>
+        <button class="btn btn-outline" id="nextGraphBtn">
+          পরবর্তী
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Advanced Graph Viewer Modal -->
+<div id="graphViewerModal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-overlay"></div>
+  
+  <div class="modal-container graph-viewer-modal">
+    <div class="viewer-header">
+      <button class="viewer-btn" id="viewerZoomOut" aria-label="Zoom out">
+        <i class="fas fa-search-minus" aria-hidden="true"></i>
+      </button>
+      <button class="viewer-btn" id="viewerZoomIn" aria-label="Zoom in">
+        <i class="fas fa-search-plus" aria-hidden="true"></i>
+      </button>
+      <button class="viewer-btn" id="viewerReset" aria-label="Reset zoom">
+        <i class="fas fa-sync-alt" aria-hidden="true"></i>
+      </button>
+      <button class="viewer-btn" id="viewerRotate" aria-label="Rotate">
+        <i class="fas fa-redo" aria-hidden="true"></i>
+      </button>
+      <button class="viewer-btn" id="viewerDownload" aria-label="Download">
+        <i class="fas fa-download" aria-hidden="true"></i>
+      </button>
+      <button class="viewer-btn close-modal" id="closeViewer" aria-label="Close viewer">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="viewer-body">
+      <div class="viewer-content" id="viewerContent">
+        <!-- Graph content will be loaded here -->
+      </div>
+    </div>
+
+    <div class="viewer-footer">
+      <div class="viewer-info">
+        <span id="viewerGraphTitle">Graph Title</span>
+        <span class="viewer-zoom-level" id="viewerZoomLevel">100%</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- User Authentication Modal -->
+<div id="authModal" class="modal" role="dialog" aria-labelledby="authModalTitle" aria-hidden="true">
+  <div class="modal-overlay"></div>
+  
+  <div class="modal-container auth-modal">
+    <div class="modal-header">
+      <h2 id="authModalTitle" class="modal-title">সাইন ইন</h2>
+      <button class="modal-close close-modal" id="closeAuthModal" aria-label="Close modal">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- Auth Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" data-tab="login">লগ ইন</button>
+        <button class="auth-tab-btn" data-tab="register">রেজিস্টার</button>
+        <button class="auth-tab-btn" data-tab="reset">পাসওয়ার্ড রিসেট</button>
+      </div>
+
+      <!-- Login Form -->
+      <div class="auth-tab-content active" id="loginTab">
+        <form class="auth-form" id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">ইমেইল এড্রেস</label>
+            <input type="email" id="loginEmail" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="loginPassword">পাসওয়ার্ড</label>
+            <div class="password-input-group">
+              <input type="password" id="loginPassword" class="form-control" required>
+              <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Show password">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              আমাকে মনে রাখুন
+            </label>
+            <a href="#" class="text-link" data-tab="reset">পাসওয়ার্ড ভুলে গেছেন?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+            লগ ইন
+          </button>
+
+          <div class="auth-divider">
+            <span>অথবা</span>
+          </div>
+
+          <div class="social-auth">
+            <button type="button" class="btn btn-outline btn-social google-auth">
+              <i class="fab fa-google" aria-hidden="true"></i>
+              Google দিয়ে continue করুন
+            </button>
+            <button type="button" class="btn btn-outline btn-social github-auth">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              GitHub দিয়ে continue করুন
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="auth-tab-content" id="registerTab" aria-hidden="true">
+        <form class="auth-form" id="registerForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="registerFirstName">প্রথম নাম</label>
+              <input type="text" id="registerFirstName" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="registerLastName">শেষ নাম</label>
+              <input type="text" id="registerLastName" class="form-control" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="registerEmail">ইমেইল এড্রেস</label>
+            <input type="email" id="registerEmail" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="registerPassword">পাসওয়ার্ড</label>
+            <div class="password-input-group">
+              <input type="password" id="registerPassword" class="form-control" required>
+              <button type="button" class="password-toggle" id="toggleRegisterPassword" aria-label="Show password">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength">
+              <div class="strength-bar"></div>
+              <span class="strength-text">পাসওয়ার্ড strength</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerConfirmPassword">পাসওয়ার্ড নিশ্চিত করুন</label>
+            <input type="password" id="registerConfirmPassword" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label for="registerUserType">আপনি কে?</label>
+            <select id="registerUserType" class="form-control" required>
+              <option value="">সিলেক্ট করুন</option>
+              <option value="student">শিক্ষার্থী</option>
+              <option value="teacher">শিক্ষক</option>
+              <option value="parent">প্যারেন্ট</option>
+              <option value="other">অন্যান্য</option>
+            </select>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="acceptTerms" required>
+              <span class="checkmark"></span>
+              আমি <a href="#terms" class="text-link">Terms of Service</a> এবং 
+              <a href="#privacy" class="text-link">Privacy Policy</a>-এর সাথে agree করছি
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-user-plus" aria-hidden="true"></i>
+            অ্যাকাউন্ট তৈরি করুন
+          </button>
+        </form>
+      </div>
+
+      <!-- Password Reset Form -->
+      <div class="auth-tab-content" id="resetTab" aria-hidden="true">
+        <form class="auth-form" id="resetPasswordForm">
+          <div class="form-group">
+            <label for="resetEmail">আপনার ইমেইল এড্রেস</label>
+            <input type="email" id="resetEmail" class="form-control" required>
+            <small class="form-text">আমরা আপনার ইমেইলে একটি reset link send করব</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            রিসেট লিংক সেন্ড করুন
+          </button>
+
+          <div class="auth-footer">
+            <p>লগ ইন পেজে ফিরে যান? <a href="#" class="text-link" data-tab="login">লগ ইন করুন</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Access Modal -->
+<div id="adminAccessModal" class="modal" role="dialog" aria-labelledby="adminAccessTitle" aria-hidden="true">
+  <div class="modal-overlay"></div>
+  
+  <div class="modal-container admin-access-modal">
+    <div class="modal-header">
+      <div class="admin-access-icon">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+      </div>
+      <h2 id="adminAccessTitle" class="modal-title">অ্যাডমিন অ্যাক্সেস</h2>
+      <button class="modal-close close-modal" id="closeAdminAccess" aria-label="Close modal">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- Security Notice -->
+      <div class="security-notice">
+        <div class="notice-icon">
+          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <div class="notice-content">
+          <h4>সিকিউরিটি নোটিশ</h4>
+          <p>এই সেকশনটি শুধুমাত্র authorized administrators-এর জন্য। 
+             Unauthorized access strictly prohibited.</p>
+        </div>
+      </div>
+
+      <!-- Admin Login Form -->
+      <form class="admin-login-form" id="adminLoginForm">
+        <div class="form-group">
+          <label for="adminEmail">অ্যাডমিন ইমেইল</label>
+          <input type="email" id="adminEmail" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminPassword">অ্যাডমিন পাসওয়ার্ড</label>
+          <div class="password-input-group">
+            <input type="password" id="adminPassword" class="form-control" required>
+            <button type="button" class="password-toggle" id="toggleAdminPassword" aria-label="Show password">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Two-Factor Authentication -->
+        <div class="form-group" id="twoFactorSection" style="display: none;">
+          <label for="admin2FACode">2FA Verification Code</label>
+          <input type="text" id="admin2FACode" class="form-control" 
+                 placeholder="Enter 6-digit code" maxlength="6">
+          <small class="form-text">Check your authenticator app for the code</small>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="adminRemember">
+            <span class="checkmark"></span>
+            This device-এ remember করুন
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          অ্যাডমিন হিসেবে লগ ইন
+        </button>
+      </form>
+
+      <!-- Security Features -->
+      <div class="security-features">
+        <h5>সিকিউরিটি ফিচারস:</h5>
+        <ul class="security-list">
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Two-Factor Authentication
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Activity Monitoring
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Session Timeout
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            IP Address Tracking
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="access-log">
+        <h6>লাস্ট অ্যাক্সেস:</h6>
+        <p id="lastAdminAccess">No recent access</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Action Menu -->
+<div class="quick-action-menu" id="quickActionMenu" aria-hidden="true">
+  <button class="quick-action-item" id="quickSearchBtn" aria-label="Quick search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <span>সার্চ</span>
+  </button>
+  
+  <button class="quick-action-item" id="quickUploadBtn" aria-label="Quick upload">
+    <i class="fas fa-upload" aria-hidden="true"></i>
+    <span>আপলোড</span>
+  </button>
+  
+  <button class="quick-action-item" id="quickQuizBtn" aria-label="Quick quiz">
+    <i class="fas fa-brain" aria-hidden="true"></i>
+    <span>কুইজ</span>
+  </button>
+  
+  <button class="quick-action-item" id="quickSettingsBtn" aria-label="Quick settings">
+    <i class="fas fa-cog" aria-hidden="true"></i>
+    <span>সেটিংস</span>
+  </button>
+  
+  <button class="quick-action-toggle" id="quickActionToggle" aria-label="Toggle quick actions">
+    <i class="fas fa-plus" aria-hidden="true"></i>
+  </button>
+</div>
+
+<!-- Notification System -->
+<div class="notification-container" id="notificationContainer">
+  <!-- Notifications will be appended here -->
+</div>
+
+<!-- Notification Template -->
+<template id="notificationTemplate">
+  <div class="notification" data-type="info">
+    <div class="notification-icon">
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+    </div>
+    <div class="notification-content">
+      <h4 class="notification-title">Notification Title</h4>
+      <p class="notification-message">Notification message content goes here.</p>
+    </div>
+    <button class="notification-close" aria-label="Close notification">
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+</template>
+<!-- Advanced Admin Panel -->
+<div id="adminPanel" class="admin-panel" aria-hidden="true">
+  <div class="admin-panel-overlay" id="adminPanelOverlay"></div>
+  
+  <div class="admin-panel-container">
+    
+    <!-- Admin Panel Header -->
+    <div class="admin-header">
+      <div class="admin-brand">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        <h2>Graphz Admin Panel</h2>
+        <span class="admin-version">v2.1.0</span>
+      </div>
+      
+      <div class="admin-user">
+        <div class="admin-avatar">
+          <i class="fas fa-user-cog" aria-hidden="true"></i>
+        </div>
+        <div class="admin-user-info">
+          <span class="admin-name">System Administrator</span>
+          <span class="admin-role">Super Admin</span>
+        </div>
+        <button class="admin-logout-btn" id="adminLogoutBtn" aria-label="Logout from admin panel">
+          <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="admin-nav">
+      <div class="nav-group">
+        <h3 class="nav-group-title">Content Management</h3>
+        <button class="admin-nav-btn active" data-tab="dashboard">
+          <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
+          Dashboard
+        </button>
+        <button class="admin-nav-btn" data-tab="graph-management">
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
+          Graph Management
+        </button>
+        <button class="admin-nav-btn" data-tab="content-upload">
+          <i class="fas fa-upload" aria-hidden="true"></i>
+          Content Upload
+        </button>
+        <button class="admin-nav-btn" data-tab="quiz-management">
+          <i class="fas fa-brain" aria-hidden="true"></i>
+          Quiz Management
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <h3 class="nav-group-title">User Management</h3>
+        <button class="admin-nav-btn" data-tab="user-management">
+          <i class="fas fa-users" aria-hidden="true"></i>
+          User Management
+        </button>
+        <button class="admin-nav-btn" data-tab="feedback-management">
+          <i class="fas fa-comments" aria-hidden="true"></i>
+          Feedback & Reviews
+        </button>
+        <button class="admin-nav-btn" data-tab="analytics">
+          <i class="fas fa-chart-bar" aria-hidden="true"></i>
+          Analytics
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <h3 class="nav-group-title">System Settings</h3>
+        <button class="admin-nav-btn" data-tab="site-settings">
+          <i class="fas fa-cog" aria-hidden="true"></i>
+          Site Settings
+        </button>
+        <button class="admin-nav-btn" data-tab="seo-settings">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          SEO Settings
+        </button>
+        <button class="admin-nav-btn" data-tab="security">
+          <i class="fas fa-lock" aria-hidden="true"></i>
+          Security
+        </button>
+        <button class="admin-nav-btn" data-tab="backup">
+          <i class="fas fa-database" aria-hidden="true"></i>
+          Backup & Restore
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <h3 class="nav-group-title">Advanced</h3>
+        <button class="admin-nav-btn" data-tab="api-settings">
+          <i class="fas fa-code" aria-hidden="true"></i>
+          API Settings
+        </button>
+        <button class="admin-nav-btn" data-tab="logs">
+          <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+          System Logs
+        </button>
+        <button class="admin-nav-btn" data-tab="maintenance">
+          <i class="fas fa-tools" aria-hidden="true"></i>
+          Maintenance
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Content Area -->
+    <div class="admin-content">
+      
+      <!-- Dashboard Tab -->
+      <div class="admin-tab-content active" id="dashboardTab">
+        <div class="tab-header">
+          <h3>Admin Dashboard</h3>
+          <p>Overview of your Graphz platform</p>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-icon primary">
+              <i class="fas fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalGraphsAdmin">0</span>
+              <span class="stat-label">Total Graphs</span>
+              <span class="stat-trend positive">+12% this month</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon success">
+              <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalUsersAdmin">0</span>
+              <span class="stat-label">Active Users</span>
+              <span class="stat-trend positive">+8% this week</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon warning">
+              <i class="fas fa-download" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="totalDownloadsAdmin">0</span>
+              <span class="stat-label">Total Downloads</span>
+              <span class="stat-trend positive">+15% today</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon danger">
+              <i class="fas fa-comments" aria-hidden="true"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="pendingFeedback">0</span>
+              <span class="stat-label">Pending Feedback</span>
+              <span class="stat-trend negative">-5% resolved</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h4>Recent Activity</h4>
+            <div class="activity-list" id="adminActivityList">
+              <!-- Activity items will be populated -->
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h4>Quick Actions</h4>
+            <div class="quick-actions-grid">
+              <button class="quick-action-btn" data-action="add-graph">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                Add New Graph
+              </button>
+              <button class="quick-action-btn" data-action="manage-users">
+                <i class="fas fa-user-cog" aria-hidden="true"></i>
+                Manage Users
+              </button>
+              <button class="quick-action-btn" data-action="view-analytics">
+                <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                View Analytics
+              </button>
+              <button class="quick-action-btn" data-action="backup-data">
+                <i class="fas fa-database" aria-hidden="true"></i>
+                Backup Data
+              </button>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h4>System Health</h4>
+            <div class="health-status">
+              <div class="health-item">
+                <span class="health-label">Server Status</span>
+                <span class="health-value online">Online</span>
+              </div>
+              <div class="health-item">
+                <span class="health-label">Database</span>
+                <span class="health-value online">Healthy</span>
+              </div>
+              <div class="health-item">
+                <span class="health-label">Storage</span>
+                <div class="health-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                  </div>
+                  <span>65% used</span>
+                </div>
+              </div>
+              <div class="health-item">
+                <span class="health-label">Last Backup</span>
+                <span class="health-value">2 hours ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graph Management Tab -->
+      <div class="admin-tab-content" id="graphManagementTab" aria-hidden="true">
+        <div class="tab-header">
+          <h3>Graph Management</h3>
+          <p>Manage all graphs and content</p>
+          <div class="tab-actions">
+            <button class="btn btn-primary" id="addGraphBtn">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+              Add New Graph
+            </button>
+            <button class="btn btn-outline" id="bulkUploadBtn">
+              <i class="fas fa-upload" aria-hidden="true"></i>
+              Bulk Upload
+            </button>
+          </div>
+        </div>
+
+        <!-- Graph Management Tools -->
+        <div class="management-tools">
+          <div class="search-box">
+            <input type="text" id="adminGraphSearch" placeholder="Search graphs..." class="form-control">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </div>
+          
+          <div class="filter-controls">
+            <select id="adminGraphFilter" class="form-control">
+              <option value="all">All Graphs</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="pending">Pending Review</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+
+          <div class="bulk-actions">
+            <select id="bulkActionSelect" class="form-control">
+              <option value="">Bulk Actions</option>
+              <option value="publish">Publish</option>
+              <option value="unpublish">Unpublish</option>
+              <option value="delete">Delete</option>
+              <option value="export">Export</option>
+            </select>
+            <button class="btn btn-outline" id="applyBulkAction">Apply</button>
+          </div>
+        </div>
+
+        <!-- Graphs Table -->
+        <div class="admin-table-container">
+          <table class="admin-table" id="graphsTable">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" id="selectAllGraphs">
+                </th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Class</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Views</th>
+                <th>Downloads</th>
+                <th>Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="graphsTableBody">
+              <!-- Graphs will be populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="admin-pagination">
+          <div class="pagination-info">
+            Showing <span id="graphStart">1</span>-<span id="graphEnd">10</span> of <span id="graphTotal">0</span> graphs
+          </div>
+          <div class="pagination-controls">
+            <button class="pagination-btn" id="prevGraphPage" disabled>
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="pagination-pages" id="graphPages"></div>
+            <button class="pagination-btn" id="nextGraphPage">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Upload Tab -->
+      <div class="admin-tab-content" id="contentUploadTab" aria-hidden="true">
+        <div class="tab-header">
+          <h3>Content Upload</h3>
+          <p>Upload new graphs and educational content</p>
+        </div>
+
+        <!-- Upload Type Selector -->
+        <div class="upload-type-selector">
+          <div class="upload-type-card active" data-type="single">
+            <div class="upload-icon">
+              <i class="fas fa-file-upload" aria-hidden="true"></i>
+            </div>
+            <h4>Single Graph Upload</h4>
+            <p>Upload one graph at a time with detailed metadata</p>
+          </div>
+
+          <div class="upload-type-card" data-type="bulk">
+            <div class="upload-icon">
+              <i class="fas fa-folder-open" aria-hidden="true"></i>
+            </div>
+            <h4>Bulk Upload</h4>
+            <p>Upload multiple graphs using CSV or JSON files</p>
+          </div>
+
+          <div class="upload-type-card" data-type="api">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+            </div>
+            <h4>API Upload</h4>
+            <p>Use REST API to upload graphs programmatically</p>
+          </div>
+        </div>
+
+        <!-- Single Upload Form -->
+        <div class="upload-form-container active" id="singleUploadForm">
+          <form class="graph-upload-form" id="graphUploadForm" enctype="multipart/form-data">
+            <div class="form-section">
+              <h4>Basic Information</h4>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="graphTitle">Graph Title *</label>
+                  <input type="text" id="graphTitle" name="title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="graphSubject">Subject *</label>
+                  <select id="graphSubject" name="subject" class="form-control" required>
+                    <option value="">Select Subject</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="graphClass">Class *</label>
+                  <select id="graphClass" name="class" class="form-control" required>
+                    <option value="">Select Class</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="graphChapter">Chapter</label>
+                  <input type="text" id="graphChapter" name="chapter" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="graphDescription">Description *</label>
+                <textarea id="graphDescription" name="description" class="form-control" rows="3" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Graph Data</h4>
+              
+              <div class="upload-type-toggle">
+                <button type="button" class="toggle-btn active" data-type="image">Image Upload</button>
+                <button type="button" class="toggle-btn" data-type="interactive">Interactive Graph</button>
+              </div>
+
+              <!-- Image Upload Section -->
+              <div class="upload-section active" id="imageUploadSection">
+                <div class="file-upload-area" id="imageUploadArea">
+                  <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                  <h5>Upload Graph Image</h5>
+                  <p>Drag & drop your image here or click to browse</p>
+                  <input type="file" id="graphImage" name="image" accept="image/*" required>
+                  <div class="file-info" id="imageFileInfo"></div>
+                </div>
+                
+                <div class="image-preview" id="imagePreview"></div>
+              </div>
+
+              <!-- Interactive Graph Section -->
+              <div class="upload-section" id="interactiveGraphSection" aria-hidden="true">
+                <div class="form-group">
+                  <label for="graphType">Graph Type</label>
+                  <select id="graphType" name="graphType" class="form-control">
+                    <option value="line">Line Graph</option>
+                    <option value="bar">Bar Graph</option>
+                    <option value="scatter">Scatter Plot</option>
+                    <option value="pie">Pie Chart</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="graphData">Graph Data (JSON)</label>
+                  <textarea id="graphData" name="graphData" class="form-control" rows="6" 
+                            placeholder='{"labels": ["X", "Y", "Z"], "datasets": [{"label": "Dataset 1", "data": [1, 2, 3]}]}'></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="graphEquation">Mathematical Equation</label>
+                  <input type="text" id="graphEquation" name="equation" class="form-control" 
+                         placeholder="e.g., y = mx + c">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Metadata & SEO</h4>
+              
+              <div class="form-group">
+                <label for="graphAliases">Alternative Names (Comma separated)</label>
+                <input type="text" id="graphAliases" name="aliases" class="form-control" 
+                       placeholder="বাংলা নাম, Hindi name, Common name">
+              </div>
+
+              <div class="form-group">
+                <label for="graphTags">Tags (Comma separated) *</label>
+                <input type="text" id="graphTags" name="tags" class="form-control" required
+                       placeholder="electricity, resistance, current">
+              </div>
+
+              <div class="form-group">
+                <label for="graphKeywords">Keywords</label>
+                <input type="text" id="graphKeywords" name="keywords" class="form-control"
+                       placeholder="voltage, V=IR, circuit">
+              </div>
+
+              <div class="form-group">
+                <label for="graphSource">Source Reference</label>
+                <input type="text" id="graphSource" name="source" class="form-control"
+                       placeholder="NCERT Physics Part 1, Page 45">
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Publishing Options</h4>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="graphStatus">Status</label>
+                  <select id="graphStatus" name="status" class="form-control">
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                    <option value="pending">Pending Review</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="graphDifficulty">Difficulty Level</label>
+                  <select id="graphDifficulty" name="difficulty" class="form-control">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="graphFeatured" name="featured">
+                  <span class="checkmark"></span>
+                  Feature this graph on homepage
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="graphInteractive" name="interactive">
+                    <span class="checkmark"></span>
+                    Enable interactive features
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save" aria-hidden="true"></i>
+                  Save Graph
+                </button>
+                <button type="button" class="btn btn-outline" id="previewGraphBtn">
+                  <i class="fas fa-eye" aria-hidden="true"></i>
+                  Preview
+                </button>
+                <button type="reset" class="btn btn-text">
+                  <i class="fas fa-redo" aria-hidden="true"></i>
+                  Reset Form
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Bulk Upload Form -->
+          <div class="upload-form-container" id="bulkUploadForm" aria-hidden="true">
+            <div class="bulk-upload-info">
+              <h4>Bulk Upload Guidelines</h4>
+              <ul>
+                <li>Supported formats: CSV, JSON</li>
+                <li>Maximum file size: 10MB</li>
+                <li>Maximum records per upload: 1000</li>
+                <li>Download template: <a href="#" class="text-link">CSV Template</a> | <a href="#" class="text-link">JSON Template</a></li>
+              </ul>
+            </div>
+
+            <form class="bulk-upload-form" id="bulkUploadFormElement" enctype="multipart/form-data">
+              <div class="file-upload-area bulk-upload-area" id="bulkUploadArea">
+                <i class="fas fa-folder-open" aria-hidden="true"></i>
+                <h5>Upload Bulk Data File</h5>
+                <p>Drag & drop your CSV or JSON file here</p>
+                <input type="file" id="bulkFile" name="bulkFile" accept=".csv,.json" required>
+                <div class="file-info" id="bulkFileInfo"></div>
+              </div>
+
+              <div class="upload-options">
+                <h5>Upload Options</h5>
+                
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="bulkOverwrite" name="overwrite">
+                    <span class="checkmark"></span>
+                    Overwrite existing graphs with same title
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="bulkPublish" name="publish" checked>
+                    <span class="checkmark"></span>
+                    Auto-publish graphs after upload
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label for="bulkDefaultStatus">Default Status</label>
+                  <select id="bulkDefaultStatus" name="defaultStatus" class="form-control">
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-upload" aria-hidden="true"></i>
+                  Start Bulk Upload
+                </button>
+              </div>
+            </form>
+
+            <div class="upload-progress" id="bulkUploadProgress" style="display: none;">
+              <h5>Upload Progress</h5>
+              <div class="progress-bar">
+                <div class="progress-fill" id="bulkProgressFill"></div>
+              </div>
+              <div class="progress-info">
+                <span id="bulkProgressText">Processing...</span>
+                <span id="bulkProgressPercent">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Panel Footer -->
+      <div class="admin-footer">
+        <div class="admin-session-info">
+          <span>Session: <strong id="adminSessionTime">00:00:00</strong></span>
+          <span>Last Activity: <strong id="adminLastActivity">Just now</strong></span>
+        </div>
+        
+        <div class="admin-system-info">
+          <span>Memory: <strong id="adminMemoryUsage">0 MB</strong></span>
+          <span>Response: <strong id="adminResponseTime">0ms</strong></span>
+        </div>
+
+        <button class="btn btn-text" id="closeAdminPanel">
+          <i class="fas fa-times" aria-hidden="true"></i>
+          Close Admin Panel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Settings Panel -->
+  <div id="quickSettingsPanel" class="quick-settings-panel" aria-hidden="true">
+    <div class="settings-header">
+      <h4>Quick Settings</h4>
+      <button class="close-settings" id="closeQuickSettings" aria-label="Close settings">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="settings-content">
+      <div class="setting-group">
+        <h5>Theme Settings</h5>
+        
+        <div class="setting-item">
+          <label>Theme Mode</label>
+          <div class="theme-toggle">
+            <button class="theme-option active" data-theme="light">
+              <i class="fas fa-sun" aria-hidden="true"></i>
+              Light
+            </button>
+            <button class="theme-option" data-theme="dark">
+              <i class="fas fa-moon" aria-hidden="true"></i>
+              Dark
+            </button>
+            <button class="theme-option" data-theme="auto">
+              <i class="fas fa-adjust" aria-hidden="true"></i>
+              Auto
+            </button>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <label>Primary Color</label>
+          <div class="color-picker">
+            <input type="color" id="primaryColorPicker" value="#2563eb">
+            <div class="color-presets">
+              <div class="color-preset" data-color="#2563eb" style="background-color: #2563eb;"></div>
+              <div class="color-preset" data-color="#dc2626" style="background-color: #dc2626;"></div>
+              <div class="color-preset" data-color="#16a34a" style="background-color: #16a34a;"></div>
+              <div class="color-preset" data-color="#ea580c" style="background-color: #ea580c;"></div>
+              <div class="color-preset" data-color="#7c3aed" style="background-color: #7c3aed;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h5>Display Settings</h5>
+        
+        <div class="setting-item">
+          <label>Font Size</label>
+          <div class="font-size-control">
+            <button class="size-btn" data-size="small">A</button>
+            <button class="size-btn active" data-size="medium">A</button>
+            <button class="size-btn" data-size="large">A</button>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <label>Animation</label>
+          <label class="switch">
+            <input type="checkbox" id="animationToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <label>Reduce Motion</label>
+          <label class="switch">
+            <input type="checkbox" id="reduceMotionToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <h5>Content Settings</h5>
+        
+        <div class="setting-item">
+          <label>Default View</label>
+          <select id="defaultViewSelect" class="form-control">
+            <option value="grid">Grid View</option>
+            <option value="list">List View</option>
+            <option value="compact">Compact View</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label>Items Per Page</label>
+          <select id="itemsPerPageSelect" class="form-control">
+            <option value="12">12 Items</option>
+            <option value="24">24 Items</option>
+            <option value="48">48 Items</option>
+            <option value="96">96 Items</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="setting-actions">
+        <button class="btn btn-primary btn-sm" id="applySettings">
+          <i class="fas fa-check" aria-hidden="true"></i>
+          Apply Settings
+        </button>
+        <button class="btn btn-outline btn-sm" id="resetSettings">
+          <i class="fas fa-redo" aria-hidden="true"></i>
+          Reset to Default
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================= -->
+  <!-- EXTERNAL LIBRARIES & SCRIPTS -->
+  <!-- ============================================= -->
+
+  <!-- Chart.js for Interactive Graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+  
+  <!-- Plotly.js for Advanced 3D Graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.24.2/min/plotly.min.js"></script>
+  
+  <!-- Papa Parse for CSV Processing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  
+  <!-- DOMPurify for Security -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+  
+  <!-- Pinch Zoom for Image Interaction -->
+  <script src="https://cdn.jsdelivr.net/npm/pinch-zoom-js@2.3.4/dist/pinch-zoom.min.js"></script>
+  
+  <!-- FilePond for File Uploads -->
+  <script src="https://unpkg.com/filepond@4.30.4/dist/filepond.min.js"></script>
+  
+  <!-- Sortable.js for Drag & Drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  
+  <!-- Marked.js for Markdown Processing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+  
+  <!-- Highlight.js for Code Syntax -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+  <!-- MathJax for Mathematical Equations -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+
+  <!-- AOS for Scroll Animations -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Core Application Script -->
+  <script src="js/app.js"></script>
+  
+  <!-- Module Scripts -->
+  <script src="js/modules/search-engine.js"></script>
+  <script src="js/modules/graph-manager.js"></script>
+  <script src="js/modules/quiz-engine.js"></script>
+  <script src="js/modules/user-manager.js"></script>
+  <script src="js/modules/admin-panel.js"></script>
+  <script src="js/modules/analytics.js"></script>
+  <script src="js/modules/chart-renderer.js"></script>
+  <script src="js/modules/file-handler.js"></script>
+  <script src="js/modules/notification-system.js"></script>
+  <script src="js/modules/settings-manager.js"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    // Register service worker for PWA functionality
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('SW registered: ', registration);
+        })
+        .catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    }
+
+    // Initialize critical components when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide loading screen
+      const loadingScreen = document.getElementById('loadingScreen');
+      if (loadingScreen) {
+        setTimeout(() => {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }, 1000);
+      }
+
+      // Initialize core functionality
+      if (typeof initApp === 'function') {
+        initApp();
+      }
+
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Initialize AOS animations
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100
+        });
+      }
+
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+    });
+
+    // Error boundary for graceful error handling
+    window.addEventListener('error', function(e) {
+      console.error('Application error:', e.error);
+      
+      // Show user-friendly error message
+      if (typeof showNotification === 'function') {
+        showNotification(
+          'Something went wrong. Please refresh the page.', 
+          'error'
+        );
+      }
+    });
+
+    // Offline detection
+    window.addEventListener('online', function() {
+      if (typeof showNotification === 'function') {
+        showNotification('Connection restored', 'success');
+      }
+    });
+
+    window.addEventListener('offline', function() {
+      if (typeof showNotification === 'function') {
+        showNotification('You are currently offline', 'warning');
+      }
+    });
+
+    // Performance monitoring
+    if ('performance' in window) {
+      window.addEventListener('load', function() {
+        setTimeout(() => {
+          const perfData = performance.timing;
+          const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+          
+          console.log('Page load time:', loadTime + 'ms');
+          
+          // Send to analytics if configured
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'timing_complete', {
+              'name': 'page_load',
+              'value': loadTime,
+              'event_category': 'Performance'
+            });
+          }
+        }, 0);
+      });
+    }
+  </script>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID', {
+      page_title: document.title,
+      page_location: window.location.href
+    });
+  </script>
+
+  <!-- Structured Data for Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Graphz - Interactive Physics & Chemistry Graphs",
+    "url": "https://graphz-learning.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://graphz-learning.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Graphz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://graphz-learning.com/images/logo.png"
+      }
+    }
+  }
+  </script>
+
+</body>
+</html>
+               
