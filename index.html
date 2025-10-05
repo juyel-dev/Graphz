@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphz - Explore Mathematical Graphs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Graphz</span>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search graphs (e.g., Ohm's Law, Parabola...)">
+                        <button id="searchBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Graphz</span>
+                </div>
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Graph Gallery
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-book"></i>
+                    Subjects
+                </a>
+                <a href="#" class="nav-item" id="adminPanelBtn">
+                    <i class="fas fa-cog"></i>
+                    Admin Panel
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-info-circle"></i>
+                    About
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    Contact
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Explore Beautiful Mathematical Graphs</h1>
+                    <p class="hero-description">
+                        Discover interactive graphs from Mathematics, Physics, Chemistry and more. 
+                        Perfect for students, teachers, and researchers.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="exploreBtn">
+                            <i class="fas fa-rocket"></i>
+                            Start Exploring
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-graduation-cap"></i>
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-graph">
+                    <div class="graph-placeholder">
+                        <i class="fas fa-project-diagram"></i>
+                        <p>Interactive Graph Preview</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Graphs Section -->
+            <section class="featured-section">
+                <div class="section-header">
+                    <h2>Featured Graphs</h2>
+                    <p>Popular mathematical and scientific graphs</p>
+                </div>
+                
+                <div class="graphs-grid" id="graphsGrid">
+                    <!-- Graphs will be loaded here dynamically -->
+                    <div class="graph-card loading">
+                        <div class="graph-preview">
+                            <div class="loading-spinner"></div>
+                        </div>
+                        <div class="graph-info">
+                            <h3>Loading...</h3>
+                            <p>Please wait</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Add Graph Section (Visible only when adding) -->
+            <section class="add-graph-section" id="addGraphSection" style="display: none;">
+                <div class="section-header">
+                    <h2>Add New Graph</h2>
+                    <p>Create and visualize new mathematical graphs</p>
+                </div>
+                <!-- Graph form will be here -->
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Graphz</h3>
+                    <p>Explore the beauty of mathematics through interactive graphs and diagrams.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-reddit"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">Home</a>
+                    <a href="#">Graph Gallery</a>
+                    <a href="#">Subjects</a>
+                    <a href="#">About</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Subjects</h4>
+                    <a href="#">Mathematics</a>
+                    <a href="#">Physics</a>
+                    <a href="#">Chemistry</a>
+                    <a href="#">Engineering</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> contact@graphz.com</p>
+                    <p><i class="fas fa-phone"></i> +880 XXXX-XXXXXX</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangladesh</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Graphz. All rights reserved. | Developed with <i class="fas fa-heart"></i> for Education</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Admin Panel</h3>
+                <button class="close-modal" id="closeAdminModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-login" id="adminLogin">
+                    <h4>Login to Admin Panel</h4>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+                    <button class="btn btn-primary" id="loginBtn">Login</button>
+                </div>
+                <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+                    <h4>Graph Management</h4>
+                    <button class="btn btn-success" id="addGraphBtn">
+                        <i class="fas fa-plus"></i> Add New Graph
+                    </button>
+                    <div class="admin-graphs-list" id="adminGraphsList">
+                        <!-- Admin graphs list will be here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
