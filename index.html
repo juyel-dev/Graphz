@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphz - Explore Physics & Chemistry Graphs</title>
+    <meta name="description" content="Interactive graphs and diagrams for Physics, Chemistry, Mathematics. Educational platform with real-time parameter controls.">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons & Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Meta -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Graphz</span>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search graphs (Ohm's Law, Kinematics, Titration...)">
+                        <button id="searchBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Graphz</span>
+                </div>
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="mobile-nav">
+                <a href="#" class="nav-item active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a href="#" class="nav-item" data-section="physics">
+                    <i class="fas fa-atom"></i>
+                    Physics
+                </a>
+                <a href="#" class="nav-item" data-section="chemistry">
+                    <i class="fas fa-flask"></i>
+                    Chemistry
+                </a>
+                <a href="#" class="nav-item" data-section="mathematics">
+                    <i class="fas fa-calculator"></i>
+                    Mathematics
+                </a>
+                <a href="#" class="nav-item" id="adminPanelBtn">
+                    <i class="fas fa-cog"></i>
+                    Admin Panel
+                </a>
+                <a href="#" class="nav-item" data-section="about">
+                    <i class="fas fa-info-circle"></i>
+                    About
+                </a>
+            </nav>
+            
+            <div class="mobile-footer">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section" id="homeSection">
+                <div class="hero-content">
+                    <h1 class="hero-title">Explore Interactive <span class="gradient-text">Science Graphs</span></h1>
+                    <p class="hero-description">
+                        Discover Physics, Chemistry, and Mathematics through interactive graphs, diagrams, and simulations. 
+                        Perfect for students, teachers, and researchers.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="explorePhysicsBtn">
+                            <i class="fas fa-atom"></i>
+                            Start with Physics
+                        </button>
+                        <button class="btn btn-secondary" id="exploreChemistryBtn">
+                            <i class="fas fa-flask"></i>
+                            Explore Chemistry
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="physicsCount">0</span>
+                            <span class="stat-label">Physics Graphs</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="chemistryCount">0</span>
+                            <span class="stat-label">Chemistry Graphs</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="mathCount">0</span>
+                            <span class="stat-label">Math Graphs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-graph">
+                    <div class="graph-preview-large" id="heroGraphPreview">
+                        <div class="loading-graph">
+                            <i class="fas fa-wave-square fa-beat"></i>
+                            <p>Loading Interactive Graph</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ad Zone - Top -->
+            <section class="ad-zone" id="topAdZone">
+                <div class="ad-container">
+                    <div class="ad-placeholder" id="topAd">
+                        <i class="fas fa-ad"></i>
+                        <p>Advertisement Space</p>
+                        <small>Admin can upload images here</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Physics Section -->
+            <section class="subject-section" id="physicsSection" style="display: none;">
+                <div class="section-header">
+                    <div class="subject-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h2>Physics Graphs</h2>
+                    <p>Interactive simulations and diagrams for Physics education</p>
+                    
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="kinematics">Kinematics</button>
+                        <button class="filter-btn" data-category="electricity">Electricity</button>
+                        <button class="filter-btn" data-category="waves">Waves</button>
+                        <button class="filter-btn" data-category="thermodynamics">Thermodynamics</button>
+                    </div>
+                </div>
+                
+                <div class="graphs-grid" id="physicsGrid">
+                    <!-- Physics graphs loaded here -->
+                </div>
+            </section>
+
+            <!-- Chemistry Section -->
+            <section class="subject-section" id="chemistrySection" style="display: none;">
+                <div class="section-header">
+                    <div class="subject-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h2>Chemistry Graphs</h2>
+                    <p>Chemical reactions, equilibrium, and analytical chemistry diagrams</p>
+                    
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="kinetics">Kinetics</button>
+                        <button class="filter-btn" data-category="equilibrium">Equilibrium</button>
+                        <button class="filter-btn" data-category="thermochemistry">Thermochemistry</button>
+                        <button class="filter-btn" data-category="electrochemistry">Electrochemistry</button>
+                    </div>
+                </div>
+                
+                <div class="graphs-grid" id="chemistryGrid">
+                    <!-- Chemistry graphs loaded here -->
+                </div>
+            </section>
+
+            <!-- Mathematics Section -->
+            <section class="subject-section" id="mathematicsSection" style="display: none;">
+                <div class="section-header">
+                    <div class="subject-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2>Mathematics Graphs</h2>
+                    <p>Algebra, Calculus, Trigonometry and more</p>
+                    
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="algebra">Algebra</button>
+                        <button class="filter-btn" data-category="calculus">Calculus</button>
+                        <button class="filter-btn" data-category="trigonometry">Trigonometry</button>
+                        <button class="filter-btn" data-category="geometry">Geometry</button>
+                    </div>
+                </div>
+                
+                <div class="graphs-grid" id="mathematicsGrid">
+                    <!-- Mathematics graphs loaded here -->
+                </div>
+            </section>
+
+            <!-- Ad Zone - Middle -->
+            <section class="ad-zone" id="middleAdZone">
+                <div class="ad-container">
+                    <div class="ad-placeholder" id="middleAd">
+                        <i class="fas fa-ad"></i>
+                        <p>Advertisement Space</p>
+                        <small>Admin can upload images here</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section" id="aboutSection" style="display: none;">
+                <div class="section-header">
+                    <h2>About Graphz</h2>
+                    <p>Revolutionizing science education through interactive visualization</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Our Mission</h3>
+                        <p>Make complex scientific concepts accessible through interactive graphs and simulations.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <i class="fas fa-users"></i>
+                        <h3>For Everyone</h3>
+                        <p>Students, teachers, researchers - all can benefit from our growing graph library.</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile First</h3>
+                        <p>Optimized for all devices, especially mobile phones for learning on the go.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Graphz</h3>
+                    <p>Exploring science through interactive visualization. Making education accessible and engaging.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" title="Reddit"><i class="fab fa-reddit"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Subjects</h4>
+                    <a href="#" data-section="physics">Physics</a>
+                    <a href="#" data-section="chemistry">Chemistry</a>
+                    <a href="#" data-section="mathematics">Mathematics</a>
+                    <a href="#" data-section="engineering">Engineering</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Graph Gallery</a>
+                    <a href="#">Interactive Tools</a>
+                    <a href="#">Learning Materials</a>
+                    <a href="#">Teacher Resources</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact & Support</h4>
+                    <p><i class="fas fa-envelope"></i> contact@graphz.com</p>
+                    <p><i class="fas fa-phone"></i> +880 XXXX-XXXXXX</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangladesh</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Graphz. All rights reserved. | Built with <i class="fas fa-heart" style="color: #ef4444;"></i> for Education</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content admin-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-cogs"></i> Admin Panel</h3>
+                <button class="close-modal" id="closeAdminModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Admin Login -->
+                <div class="admin-login" id="adminLogin">
+                    <div class="login-header">
+                        <i class="fas fa-lock"></i>
+                        <h4>Admin Authentication</h4>
+                    </div>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password" autocomplete="current-password">
+                    <button class="btn btn-primary" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" data-tab="graphManagement">
+                            <i class="fas fa-chart-bar"></i> Graph Management
+                        </button>
+                        <button class="tab-btn" data-tab="adManagement">
+                            <i class="fas fa-ad"></i> Ad Management
+                        </button>
+                        <button class="tab-btn" data-tab="systemSettings">
+                            <i class="fas fa-cog"></i> Settings
+                        </button>
+                    </div>
+
+                    <!-- Graph Management Tab -->
+                    <div class="tab-content active" id="graphManagement">
+                        <div class="admin-section">
+                            <h4><i class="fas fa-plus-circle"></i> Add New Graph</h4>
+                            
+                            <!-- Upload Type Selector -->
+                            <div class="upload-type-selector">
+                                <button type="button" class="type-btn active" data-type="interactive">
+                                    <i class="fas fa-code"></i> Interactive Graph
+                                </button>
+                                <button type="button" class="type-btn" data-type="image">
+                                    <i class="fas fa-image"></i> Image Upload
+                                </button>
+                                <button type="button" class="type-btn" data-type="template">
+                                    <i class="fas fa-magic"></i> Use Template
+                                </button>
+                            </div>
+
+                            <!-- Graph Form -->
+                            <form id="addGraphForm" class="graph-form">
+                                <!-- Interactive Graph Section -->
+                                <div class="form-section" id="interactiveSection">
+                                    <label>Graph Code (JavaScript)</label>
+                                    <textarea id="graphCode" placeholder="function plotGraph() { /* Your JavaScript code */ }" rows="6"></textarea>
+                                    <div class="code-actions">
+                                        <button type="button" class="btn btn-secondary" id="testCodeBtn">
+                                            <i class="fas fa-play"></i> Test Code
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" id="clearCodeBtn">
+                                            <i class="fas fa-broom"></i> Clear
+                                        </button>
+                                    </div>
+                                    <div class="code-preview" id="codePreview"></div>
+                                </div>
+
+                                <!-- Image Upload Section -->
+                                <div class="form-section hidden" id="imageSection">
+                                    <label>Upload Graph Image</label>
+                                    <div class="image-upload-zone" id="imageDropZone">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag & drop image or click to upload</p>
+                                        <input type="file" id="imageUpload" accept="image/*" hidden>
+                                        <button type="button" class="btn btn-secondary" id="browseImageBtn">
+                                            <i class="fas fa-folder-open"></i> Browse Files
+                                        </button>
+                                    </div>
+                                    <div class="image-preview" id="imagePreview"></div>
+                                </div>
+
+                                <!-- Common Fields -->
+                                <div class="common-fields">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Graph Name *</label>
+                                            <input type="text" id="graphName" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Equation/Formula</label>
+                                            <input type="text" id="graphEquation" placeholder="e.g., V = I × R">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Subject *</label>
+                                            <select id="graphSubject" required>
+                                                <option value="">Select Subject</option>
+                                                <option value="physics">Physics</option>
+                                                <option value="chemistry">Chemistry</option>
+                                                <option value="mathematics">Mathematics</option>
+                                                <option value="engineering">Engineering</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Subcategory</label>
+                                            <select id="graphSubcategory">
+                                                <option value="">Select Subcategory</option>
+                                                <!-- Dynamically populated based on subject -->
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Description *</label>
+                                        <textarea id="graphDescription" required rows="3" placeholder="Describe the graph and its educational value..."></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Tags (comma separated)</label>
+                                        <input type="text" id="graphTags" placeholder="electricity, circuits, interactive">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Aliases (comma separated)</label>
+                                        <input type="text" id="graphAliases" placeholder="ohms law, voltage current">
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" id="cancelGraphBtn">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" id="saveGraphBtn">
+                                        <i class="fas fa-save"></i> Save Graph
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Existing Graphs -->
+                        <div class="admin-section">
+                            <h4><i class="fas fa-list"></i> Existing Graphs</h4>
+                            <div class="admin-graphs-list" id="adminGraphsList">
+                                <!-- Graphs will be listed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ad Management Tab -->
+                    <div class="tab-content" id="adManagement">
+                        <div class="admin-section">
+                            <h4><i class="fas fa-ad"></i> Manage Advertisements</h4>
+                            <p>Upload advertisement images for different zones</p>
+                            
+                            <div class="ad-zones-management">
+                                <!-- Top Ad Zone -->
+                                <div class="ad-zone-config">
+                                    <h5>Top Banner Ad</h5>
+                                    <div class="ad-upload-area" data-zone="topAd">
+                                        <div class="ad-preview" id="topAdPreview"></div>
+                                        <input type="file" class="ad-upload-input" accept="image/*" data-zone="topAd" hidden>
+                                        <button type="button" class="btn btn-secondary ad-upload-btn" data-zone="topAd">
+                                            <i class="fas fa-upload"></i> Upload Image
+                                        </button>
+                                        <button type="button" class="btn btn-danger ad-remove-btn" data-zone="topAd">
+                                            <i class="fas fa-trash"></i> Remove
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Middle Ad Zone -->
+                                <div class="ad-zone-config">
+                                    <h5>Middle Banner Ad</h5>
+                                    <div class="ad-upload-area" data-zone="middleAd">
+                                        <div class="ad-preview" id="middleAdPreview"></div>
+                                        <input type="file" class="ad-upload-input" accept="image/*" data-zone="middleAd" hidden>
+                                        <button type="button" class="btn btn-secondary ad-upload-btn" data-zone="middleAd">
+                                            <i class="fas fa-upload"></i> Upload Image
+                                        </button>
+                                        <button type="button" class="btn btn-danger ad-remove-btn" data-zone="middleAd">
+                                            <i class="fas fa-trash"></i> Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Settings Tab -->
+                    <div class="tab-content" id="systemSettings">
+                        <div class="admin-section">
+                            <h4><i class="fas fa-cog"></i> System Settings</h4>
+                            
+                            <div class="setting-group">
+                                <label>Admin Password</label>
+                                <div class="password-change">
+                                    <input type="password" id="newPassword" placeholder="New password">
+                                    <input type="password" id="confirmPassword" placeholder="Confirm password">
+                                    <button class="btn btn-primary" id="changePasswordBtn">
+                                        <i class="fas fa-key"></i> Change Password
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="setting-group">
+                                <label>Data Management</label>
+                                <div class="data-actions">
+                                    <button class="btn btn-secondary" id="exportDataBtn">
+                                        <i class="fas fa-download"></i> Export All Data
+                                    </button>
+                                    <button class="btn btn-secondary" id="importDataBtn">
+                                        <i class="fas fa-upload"></i> Import Data
+                                    </button>
+                                    <input type="file" id="importDataInput" accept=".json" hidden>
+                                </div>
+                            </div>
+
+                            <div class="setting-group">
+                                <label>Reset System</label>
+                                <button class="btn btn-danger" id="resetSystemBtn">
+                                    <i class="fas fa-trash"></i> Reset to Default
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graph Detail Modal -->
+    <div class="modal" id="graphDetailModal">
+        <div class="modal-content graph-detail-modal">
+            <!-- Graph details loaded dynamically -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
