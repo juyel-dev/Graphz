@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAPHZ - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Login Section -->
+        <div id="loginSection" class="login-section">
+            <div class="login-box">
+                <h2>🔐 Admin Login</h2>
+                <p>Access the GRAPHZ admin panel</p>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required class="form-input">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                
+                <div id="loginMessage" class="message"></div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section (Hidden until login) -->
+        <div id="dashboardSection" class="dashboard-section" style="display: none;">
+            <header class="admin-header">
+                <div class="container">
+                    <h1>📊 GRAPHZ Admin Panel</h1>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </header>
+
+            <main class="admin-main">
+                <div class="container">
+                    <!-- Add Graph Form -->
+                    <section class="form-section">
+                        <h2>➕ Add New Graph</h2>
+                        <form id="graphForm" class="graph-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="graphName">Graph Name *</label>
+                                    <input type="text" id="graphName" required class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="graphAlias">Alias Name</label>
+                                    <input type="text" id="graphAlias" class="form-input">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="graphSource">Source</label>
+                                <input type="text" id="graphSource" class="form-input" placeholder="Book, website, or reference">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="graphDescription">Description *</label>
+                                <textarea id="graphDescription" required class="form-textarea" placeholder="Describe this graph..."></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="graphSubject">Subject *</label>
+                                    <select id="graphSubject" required class="form-input">
+                                        <option value="">Select Subject</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Biology">Biology</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="graphTags">Tags (comma separated)</label>
+                                    <input type="text" id="graphTags" class="form-input" placeholder="tag1, tag2, tag3">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="graphImageUrl">Image URL (Imgur) *</label>
+                                <input type="url" id="graphImageUrl" required class="form-input" placeholder="https://i.imgur.com/xxxxxx.jpg">
+                                <small>Upload your image to <a href="https://imgur.com/upload" target="_blank">Imgur</a> and paste the direct link here</small>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" id="submitBtn" class="btn btn-primary">Add Graph</button>
+                                <button type="button" id="updateBtn" class="btn btn-success" style="display: none;">Update Graph</button>
+                                <button type="button" id="cancelBtn" class="btn btn-secondary" style="display: none;">Cancel</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Graphs List -->
+                    <section class="graphs-list-section">
+                        <h2>📋 All Graphs</h2>
+                        <div id="adminGraphsList" class="admin-graphs-list">
+                            <!-- Graphs will be loaded here -->
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
