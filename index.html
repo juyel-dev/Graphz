@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAPHZ - Knowledge Graphs Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>📊 GRAPHZ</h1>
+                <p class="tagline">Visual Wikipedia for Every Learner</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="🔍 Search graphs by name, subject, or tags..." class="search-input">
+                    <div class="search-info">
+                        <span id="resultCount">Loading graphs...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery" id="graphGallery">
+                <!-- Graphs will be loaded here by JavaScript -->
+                <div class="loading">Loading graphs...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 GRAPHZ. Knowledge Visualization Platform.</p>
+            <a href="admin.html" class="admin-link">Admin Panel</a>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
