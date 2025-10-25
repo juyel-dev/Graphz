@@ -1,4 +1,17 @@
-// app.js - User Gallery Functionality
+/*
+ * app.js - User Gallery Functionality
+ *
+ * !! REQUIRED DEPENDENCIES !!
+ * This script assumes the following are loaded BEFORE it:
+ * 1. Firebase Core SDK (firebase-app.js)
+ * 2. Firebase Firestore SDK (firebase-firestore.js)
+ * 3. A global 'db' object initialized as: const db = firebase.firestore();
+ * 4. HTML Elements:
+ * - <div id="graphGallery"></div>
+ * - <input id="searchInput">
+ * - <span id="resultCount"></span>
+ * - Buttons with class="filter-btn" and 'data-category' attribute (e.g., <button class="filter-btn" data-category="all">All</button>)
+ */
 
 // Global variables
 let allGraphs = [];
@@ -12,14 +25,54 @@ const resultCount = document.getElementById('resultCount');
 // Category filter functionality (NEW)
 let currentCategory = 'all';
 
+// --- DEBUG/FUNCTIONAL STUB ---
+// This mock 'bookmarkSystem' is provided to make the script functional.
+// Replace this with your actual bookmark system implementation.
+if (typeof window.bookmarkSystem === 'undefined') {
+    console.warn('Mock bookmarkSystem created. Replace with your actual implementation.');
+    window.bookmarkSystem = {
+        userBookmarks: ['mock-id-1'], // Mock: one item is bookmarked by default
+        
+        toggleBookmark: function(graphId) {
+            console.log(`Toggling bookmark for: ${graphId}`);
+            const index = this.userBookmarks.indexOf(graphId);
+            if (index > -1) {
+                this.userBookmarks.splice(index, 1);
+            } else {
+                this.userBookmarks.push(graphId);
+            }
+            // Update the single icon clicked
+            this.updateSingleBookmarkIcon(graphId);
+        },
+        
+        updateBookmarkUI: function() {
+            // This is called by displayGraphs to set all icons correctly on render
+            document.querySelectorAll('.bookmark-btn').forEach(btn => {
+                const id = btn.dataset.graphId;
+                this.updateSingleBookmarkIcon(id, btn);
+            });
+        },
+        
+        updateSingleBookmarkIcon: function(graphId, btnElement = null) {
+            const btn = btnElement || document.querySelector(`.bookmark-btn[data-graph-id="${graphId}"]`);
+            if (btn) {
+                const isBookmarked = this.userBookmarks.includes(graphId);
+                btn.classList.toggle('bookmarked', isBookmarked);
+                btn.innerHTML = isBookmarked ? '★' : '☆';
+            }
+        }
+    };
+}
+// --- END STUB ---
+
+
 // Initialize the application
 function initApp() {
     loadGraphs();
     setupEventListeners();
-    // Assuming you have a category filter section in your HTML
-    // You should add an HTML element with class="filter-btn" and data-category attribute
-    // e.g., <button class="filter-btn active" data-category="all">All</button>
-    // setupCategoryFilters(); // Uncomment this line once you have the HTML for filters
+    // **FIXED:** Uncommented this to enable category filtering.
+    // Make sure you have buttons with class="filter-btn" and data-category="..." in your HTML.
+    setupCategoryFilters();
 }
 
 // Load graphs from Firestore
@@ -38,7 +91,6 @@ function loadGraphs() {
             });
             
             // Re-apply current search/category filter on new load
-            // This is better than just copying allGraphs
             filterGraphs(); 
         }, error => {
             console.error('Error loading graphs:', error);
@@ -47,10 +99,16 @@ function loadGraphs() {
 }
 
 // View counter function (NEW)
-// NOTE: I recommend only calling this on a user action like a 'click to view details'.
 function incrementViewCount(graphId) {
+    // Check for graphId to prevent errors
+    if (!graphId) {
+        console.warn('incrementViewCount called without graphId');
+        return;
+    }
     db.collection('graphs').doc(graphId).update({
         views: firebase.firestore.FieldValue.increment(1)
+    }).catch(error => {
+        console.error("Error incrementing view count:", error);
     });
 }
 
@@ -63,27 +121,20 @@ function displayGraphs(graphs) {
                 <p style="margin-top: 1rem; color: #64748b;">Try different keywords or check back later.</p>
             </div>
         `;
+        resultCount.textContent = '0 graphs found'; // Ensure count is updated
         return;
     }
 
     graphGallery.innerHTML = graphs.map(graph => {
-        // !!! IMPORTANT ADJUSTMENT !!!
-        // I have commented out the incrementViewCount(graph.id) here
-        // Calling it here will increment views every time the gallery is rendered (e.g., on search/sort/filter)
-        // You should only call it when a user genuinely views a graph (e.g., clicks into a detail page).
-        // If you must track views in the gallery, consider server-side tracking or a debounced/throttled approach.
-        // incrementViewCount(graph.id); 
-
         // --- বুকমার্কিং এর জন্য নতুন কোড শুরু ---
         // **গুরুত্বপূর্ণ:** নিশ্চিত করুন যে `bookmarkSystem` অবজেক্টটি আপনার কোডের অন্য কোথাও সংজ্ঞায়িত এবং উপলব্ধ। 
-        // এছাড়াও, 'onerror' হ্যান্ডলারটি ইমেজ ট্যাগে আবার যোগ করা হয়েছে।
         const isBookmarked = window.bookmarkSystem && bookmarkSystem.userBookmarks.includes(graph.id);
         
         return `
         <div class="graph-card" data-id="${graph.id}">
             <div class="graph-image-container">
                 <img src="${graph.imageUrl}" alt="${graph.name}" class="graph-image"
-                     onerror="this.src='https://via.placeholder.com/300x200/64748b/ffffff?text=Image+Not+Found'">
+                     onerror="handleImageError(this)"> 
                 <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
                         data-graph-id="${graph.id}"
                         onclick="bookmarkSystem.toggleBookmark('${graph.id}')">
@@ -107,7 +158,7 @@ function displayGraphs(graphs) {
                 ` : ''}
                 
                 <div class="graph-actions">
-                    <button class="btn-download" onclick="downloadImage('${graph.imageUrl}', '${graph.name}')">
+                    <button class="btn-download" onclick="downloadImage('${graph.id}', '${graph.imageUrl}', '${graph.name}')">
                         📥 Download
                     </button>
                     <button class="btn-share" onclick="shareGraph('${graph.id}')">
@@ -125,13 +176,6 @@ function displayGraphs(graphs) {
         bookmarkSystem.updateBookmarkUI();
     }
     // --- বুকমার্কিং এর জন্য নতুন কোড শেষ ---
-}
-
-// Search functionality (UPDATED to use filterGraphs)
-function searchGraphs(query) {
-    // Setting searchInput.value will trigger filterGraphs via loadGraphs/onSnapshot if needed,
-    // but here we directly call filterGraphs to apply search/category logic.
-    filterGraphs(); 
 }
 
 // Category filter logic combining search and category (NEW)
@@ -171,12 +215,13 @@ function updateResultCount(count) {
 
 // Setup event listeners (UPDATED)
 function setupEventListeners() {
-    // Search input with debouncing (now calls filterGraphs via searchGraphs)
+    // Search input with debouncing
+    // **FIXED:** Removed redundant searchGraphs() function and call filterGraphs() directly.
     let searchTimeout;
-    searchInput.addEventListener('input', (e) => {
+    searchInput.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
-            searchGraphs(e.target.value);
+            filterGraphs(); // Directly call filterGraphs
         }, 300);
     });
 
@@ -184,16 +229,14 @@ function setupEventListeners() {
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             searchInput.value = '';
-            searchGraphs('');
+            filterGraphs(); // Directly call filterGraphs
         }
     });
-
-    // Setup category filters (Needs to be called in initApp if you have the HTML)
-    // setupCategoryFilters();
 }
 
 // Category filter event setup (NEW)
 function setupCategoryFilters() {
+    // This function will fail silently if no '.filter-btn' elements are in the HTML.
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             // Update active state
@@ -208,14 +251,23 @@ function setupCategoryFilters() {
 }
 
 // Download image function (NEW)
-function downloadImage(imageUrl, imageName) {
+// **FIXED:** Added graphId as the first parameter to enable view counting.
+function downloadImage(graphId, imageUrl, imageName) {
+    incrementViewCount(graphId); // <-- **ADDED:** Increment view count on download
+    
     fetch(imageUrl)
-        .then(response => response.blob())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.blob();
+        })
         .then(blob => {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
+            // Sanitize filename
             a.download = `${imageName.replace(/[^a-z0-9]/gi, '_')}.jpg`;
             document.body.appendChild(a);
             a.click();
@@ -224,6 +276,7 @@ function downloadImage(imageUrl, imageName) {
         })
         .catch(error => {
             console.error('Download failed:', error);
+            alert('Download failed. Opening image in a new tab.');
             // Fallback: open in new tab
             window.open(imageUrl, '_blank');
         });
@@ -231,15 +284,18 @@ function downloadImage(imageUrl, imageName) {
 
 // Social sharing function (NEW)
 function shareGraph(graphId) {
+    incrementViewCount(graphId); // <-- **ADDED:** Increment view count on share
+    
     const graph = allGraphs.find(g => g.id === graphId);
     if (!graph) return;
 
-    // Use window.location.origin to get the base URL, assuming a path might be needed later
-    const graphUrl = `${window.location.origin}/graph/${graphId}`; // You might want a specific graph URL
+    // Use window.location.origin to get the base URL
+    // **NOTE:** You may need to change '/graph/' to your actual detail page path
+    const graphUrl = `${window.location.origin}/graph/${graphId}`; 
     
     const shareData = {
         title: graph.name,
-        text: graph.description,
+        text: `Check out this graph: ${graph.name}\n${graph.description}`,
         url: graphUrl
     };
 
@@ -249,18 +305,19 @@ function shareGraph(graphId) {
             .catch(error => console.log('Sharing failed:', error));
     } else {
         // Fallback: copy to clipboard
-        const textToCopy = `${graph.name}\n${graph.description}\n${graphUrl}`;
-        navigator.clipboard.writeText(textToCopy)
-            .then(() => alert('Graph details copied to clipboard!'))
-            .catch(() => alert('Sharing not supported on this browser'));
+        navigator.clipboard.writeText(shareData.url)
+            .then(() => alert('Graph URL copied to clipboard!'))
+            .catch(() => alert('Sharing not supported. Could not copy URL.'));
     }
 }
 
-// Error handling for images
+// Error handling for images (Now used by the img tag's onerror)
 function handleImageError(img) {
     img.src = 'https://via.placeholder.com/300x200/64748b/ffffff?text=Image+Not+Found';
     img.alt = 'Image not available';
+    img.onerror = null; // Prevent infinite loops if the placeholder also fails
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initApp);
+                     
