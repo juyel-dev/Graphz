@@ -74,10 +74,22 @@ function displayGraphs(graphs) {
         // If you must track views in the gallery, consider server-side tracking or a debounced/throttled approach.
         // incrementViewCount(graph.id); 
 
+        // --- বুকমার্কিং এর জন্য নতুন কোড শুরু ---
+        // **গুরুত্বপূর্ণ:** নিশ্চিত করুন যে `bookmarkSystem` অবজেক্টটি আপনার কোডের অন্য কোথাও সংজ্ঞায়িত এবং উপলব্ধ। 
+        // এছাড়াও, 'onerror' হ্যান্ডলারটি ইমেজ ট্যাগে আবার যোগ করা হয়েছে।
+        const isBookmarked = window.bookmarkSystem && bookmarkSystem.userBookmarks.includes(graph.id);
+        
         return `
         <div class="graph-card" data-id="${graph.id}">
-            <img src="${graph.imageUrl}" alt="${graph.name}" class="graph-image" 
-                 onerror="this.src='https://via.placeholder.com/300x200/64748b/ffffff?text=Image+Not+Found'">
+            <div class="graph-image-container">
+                <img src="${graph.imageUrl}" alt="${graph.name}" class="graph-image"
+                     onerror="this.src='https://via.placeholder.com/300x200/64748b/ffffff?text=Image+Not+Found'">
+                <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
+                        data-graph-id="${graph.id}"
+                        onclick="bookmarkSystem.toggleBookmark('${graph.id}')">
+                    ${isBookmarked ? '★' : '☆'}
+                </button>
+            </div>
             <div class="graph-content">
                 <h3 class="graph-title">${graph.name}</h3>
                 ${graph.alias ? `<p class="graph-alias">"${graph.alias}"</p>` : ''}
@@ -106,6 +118,13 @@ function displayGraphs(graphs) {
         </div>
         `;
     }).join('');
+
+    // Update bookmark UI after rendering
+    // **গুরুত্বপূর্ণ:** নিশ্চিত করুন যে `bookmarkSystem` অবজেক্টটি আপনার কোডের অন্য কোথাও সংজ্ঞায়িত এবং উপলব্ধ।
+    if (window.bookmarkSystem && bookmarkSystem.updateBookmarkUI) {
+        bookmarkSystem.updateBookmarkUI();
+    }
+    // --- বুকমার্কিং এর জন্য নতুন কোড শেষ ---
 }
 
 // Search functionality (UPDATED to use filterGraphs)
