@@ -91,6 +91,11 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
+    /* Change 2: Card Minimum Height Increase */
+    min-height: 450px;
+    /* Added to support Change 3 for content height */
+    display: flex;
+    flex-direction: column;
 }
 
 .graph-card:hover {
@@ -100,13 +105,18 @@ body {
 
 .graph-image {
     width: 100%;
-    height: 200px;
+    /* Change 1: Image Height Increase from 200px to 250px */
+    height: 250px;
     object-fit: cover;
     border-bottom: 1px solid #e2e8f0;
 }
 
 .graph-content {
     padding: 1.5rem;
+    /* Change 3: Content Area Better Spacing - Added display/flex properties */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to fill remaining card space */
 }
 
 .graph-title {
@@ -126,13 +136,15 @@ body {
     color: #475569;
     margin-bottom: 1rem;
     font-size: 0.95rem;
+    /* Change 3: Content Area Better Spacing - Added flex-grow */
+    flex-grow: 1;
 }
 
 .graph-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: auto; /* Pushes meta to the bottom */
     padding-top: 1rem;
     border-top: 1px solid #f1f5f9;
 }
@@ -179,7 +191,6 @@ body {
     background: #1e293b;
     color: #cbd5e1;
     padding: 2rem 0;
-    text-align: center;
 }
 
 .footer .container {
@@ -478,3 +489,4 @@ body {
 .mt-4 { margin-top: 1rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
+    
