@@ -8,11 +8,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <h1>📊 GRAPHZ</h1>
-                <p class="tagline">Visual Wikipedia for Every Learner</p>
+            <div class="header-content">
+                <div class="logo">
+                    <h1>📊 GRAPHZ</h1>
+                    <p class="tagline">Visual Wikipedia for Every Learner</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div id="authButtons" class="auth-buttons">
+                        <button class="btn btn-outline" onclick="userAuth.openAuthModal('login')">Login</button>
+                        <button class="btn btn-primary" onclick="userAuth.openAuthModal('signup')">Sign Up</button>
+                    </div>
+
+                    <div id="userProfile" class="user-profile" style="display: none;">
+                        <div class="user-info">
+                            <span id="userName"></span>
+                            <span class="bookmarks-count">
+                                ★ <span id="bookmarksCount">0</span>
+                            </span>
+                        </div>
+                        <button class="btn btn-outline" id="userLogoutBtn">Logout</button>
+                    </div>
+
+                    <button id="darkModeToggle" class="dark-mode-btn">🌙</button>
+                </div>
             </div>
         </div>
     </header>
@@ -48,6 +70,51 @@
             <a href="admin.html" class="admin-link">Admin Panel</a>
         </div>
     </footer>
+    
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="userAuth.closeAuthModal()">&times;</span>
+            
+            <div id="loginForm">
+                <h2>Welcome Back</h2>
+                <form id="userLoginForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="email" id="userEmail" placeholder="Email" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="userPassword" placeholder="Password" required class="form-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" onclick="userAuth.showSignupForm()">Sign up</a>
+                </p>
+            </div>
+
+            <div id="signupForm" style="display: none;">
+                <h2>Create Account</h2>
+                <form id="userSignupForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="text" id="signupName" placeholder="Full Name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" placeholder="Email" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Password" required class="form-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign Up</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" onclick="userAuth.showLoginForm()">Login</a>
+                </p>
+            </div>
+
+            <div id="authMessage"></div>
+        </div>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
