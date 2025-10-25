@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAPHZ - My Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>📊 GRAPHZ</h1>
+                    <p class="tagline">My Dashboard</p>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-outline">← Back to Gallery</a>
+                    <button class="btn btn-secondary" id="userLogoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- User Stats -->
+            <section class="dashboard-section">
+                <h2>📈 My Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalBookmarks">0</div>
+                        <div class="stat-label">Bookmarks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalViews">0</div>
+                        <div class="stat-label">Total Views</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="favoriteSubject">-</div>
+                        <div class="stat-label">Favorite Subject</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="memberSince">-</div>
+                        <div class="stat-label">Member Since</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookmarked Graphs -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2>⭐ My Bookmarked Graphs</h2>
+                    <div class="section-actions">
+                        <button id="exportBookmarks" class="btn btn-outline">Export CSV</button>
+                    </div>
+                </div>
+                <div class="gallery" id="bookmarksGallery">
+                    <div class="loading">Loading your bookmarks...</div>
+                </div>
+            </section>
+
+            <!-- Recently Viewed -->
+            <section class="dashboard-section">
+                <h2>👁️ Recently Viewed</h2>
+                <div class="gallery" id="recentGallery">
+                    <div class="loading">Loading recently viewed graphs...</div>
+                </div>
+            </section>
+
+            <!-- Account Settings -->
+            <section class="dashboard-section">
+                <h2>⚙️ Account Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <h3>Profile Information</h3>
+                        <form id="profileForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="displayName">Display Name</label>
+                                <input type="text" id="displayName" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="userBio">Bio</label>
+                                <textarea id="userBio" class="form-textarea" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+
+                    <div class="setting-group">
+                        <h3>Preferences</h3>
+                        <div class="preferences">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="emailNotifications">
+                                <span>Email notifications</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="darkMode" checked>
+                                <span>Dark mode</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="autoBookmark">
+                                <span>Auto-bookmark viewed graphs</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="bookmarks.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
