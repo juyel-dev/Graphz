@@ -27,9 +27,16 @@
                     </div>
                 </div>
             </div>
-
+            
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">All Categories</button>
+                <button class="filter-btn" data-category="Physics">Physics</button>
+                <button class="filter-btn" data-category="Chemistry">Chemistry</button>
+                <button class="filter-btn" data-category="Biology">Biology</button>
+                <button class="filter-btn" data-category="Mathematics">Mathematics</button>
+                <button class="filter-btn" data-category="Computer Science">Computer Science</button>
+            </div>
             <div class="gallery" id="graphGallery">
-                <!-- Graphs will be loaded here by JavaScript -->
                 <div class="loading">Loading graphs...</div>
             </div>
         </div>
@@ -42,7 +49,6 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
