@@ -1,4 +1,4 @@
-// auth.js - User Authentication System
+// auth.js - User Authentication System (Fixed Version)
 
 class AuthSystem {
     constructor() {
@@ -7,53 +7,94 @@ class AuthSystem {
     }
 
     init() {
+        console.log('Auth system initializing...');
+        
         // Check auth state
-        auth.onAuthStateChanged(user => {
+        auth.onAuthStateChanged((user) => {
+            console.log('Auth state changed:', user);
             this.currentUser = user;
             this.updateUI();
         });
 
-        this.setupEventListeners();
+        // Setup event listeners after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            this.setupEventListeners();
+        }, 1000);
     }
 
     setupEventListeners() {
+        console.log('Setting up event listeners...');
+        
         // Login form
-        document.getElementById('userLoginForm')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.loginUser();
-        });
+        const loginForm = document.getElementById('userLoginForm');
+        if (loginForm) {
+            console.log('Login form found');
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.loginUser();
+            });
+        } else {
+            console.log('Login form NOT found');
+        }
 
         // Signup form
-        document.getElementById('userSignupForm')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.signupUser();
-        });
+        const signupForm = document.getElementById('userSignupForm');
+        if (signupForm) {
+            console.log('Signup form found');
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.signupUser();
+            });
+        }
 
         // Logout button
-        document.getElementById('userLogoutBtn')?.addEventListener('click', () => {
-            this.logoutUser();
-        });
+        const logoutBtn = document.getElementById('userLogoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                this.logoutUser();
+            });
+        }
+
+        // Close modal when clicking outside
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.closeAuthModal();
+                }
+            });
+        }
+
+        console.log('Event listeners setup complete');
     }
 
     async loginUser() {
+        console.log('Login attempt...');
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
 
+        console.log('Email:', email);
+
         try {
-            await auth.signInWithEmailAndPassword(email, password);
+            this.showMessage('Logging in...', 'success');
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            console.log('Login successful:', userCredential.user);
             this.showMessage('Login successful!', 'success');
             this.closeAuthModal();
         } catch (error) {
+            console.error('Login error:', error);
             this.showMessage(this.getAuthErrorMessage(error), 'error');
         }
     }
 
     async signupUser() {
+        console.log('Signup attempt...');
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         const name = document.getElementById('signupName').value;
 
         try {
+            this.showMessage('Creating account...', 'success');
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             
             // Save user profile
@@ -64,9 +105,11 @@ class AuthSystem {
                 bookmarks: []
             });
 
+            console.log('Signup successful:', userCredential.user);
             this.showMessage('Account created successfully!', 'success');
             this.closeAuthModal();
         } catch (error) {
+            console.error('Signup error:', error);
             this.showMessage(this.getAuthErrorMessage(error), 'error');
         }
     }
@@ -76,35 +119,42 @@ class AuthSystem {
             await auth.signOut();
             this.showMessage('Logged out successfully', 'success');
         } catch (error) {
+            console.error('Logout error:', error);
             this.showMessage('Error logging out', 'error');
         }
     }
 
     updateUI() {
+        console.log('Updating UI, user:', this.currentUser);
         const authButtons = document.getElementById('authButtons');
         const userProfile = document.getElementById('userProfile');
         const userName = document.getElementById('userName');
 
         if (this.currentUser) {
             // User is logged in
-            authButtons.style.display = 'none';
-            userProfile.style.display = 'flex';
+            if (authButtons) authButtons.style.display = 'none';
+            if (userProfile) userProfile.style.display = 'flex';
             
             // Get user data
             this.loadUserProfile();
         } else {
             // User is logged out
-            authButtons.style.display = 'flex';
-            userProfile.style.display = 'none';
+            if (authButtons) authButtons.style.display = 'flex';
+            if (userProfile) userProfile.style.display = 'none';
         }
     }
 
     async loadUserProfile() {
+        if (!this.currentUser) return;
+        
         try {
             const userDoc = await db.collection('users').doc(this.currentUser.uid).get();
             if (userDoc.exists) {
                 const userData = userDoc.data();
-                document.getElementById('userName').textContent = userData.name;
+                const userNameElement = document.getElementById('userName');
+                if (userNameElement) {
+                    userNameElement.textContent = userData.name;
+                }
             }
         } catch (error) {
             console.error('Error loading user profile:', error);
@@ -112,32 +162,54 @@ class AuthSystem {
     }
 
     openAuthModal(type = 'login') {
-        document.getElementById('authModal').style.display = 'flex';
-        if (type === 'signup') {
-            this.showSignupForm();
+        console.log('Opening auth modal:', type);
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            if (type === 'signup') {
+                this.showSignupForm();
+            } else {
+                this.showLoginForm();
+            }
         } else {
-            this.showLoginForm();
+            console.error('Auth modal not found!');
         }
     }
 
     closeAuthModal() {
-        document.getElementById('authModal').style.display = 'none';
-        document.getElementById('userLoginForm').reset();
-        document.getElementById('userSignupForm').reset();
+        console.log('Closing auth modal');
+        const modal = document.getElementById('authModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+        
+        const loginForm = document.getElementById('userLoginForm');
+        const signupForm = document.getElementById('userSignupForm');
+        
+        if (loginForm) loginForm.reset();
+        if (signupForm) signupForm.reset();
+        
+        this.showMessage('', '');
     }
 
     showLoginForm() {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('signupForm').style.display = 'none';
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        
+        if (loginForm) loginForm.style.display = 'block';
+        if (signupForm) signupForm.style.display = 'none';
     }
 
     showSignupForm() {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('signupForm').style.display = 'block';
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        
+        if (loginForm) loginForm.style.display = 'none';
+        if (signupForm) signupForm.style.display = 'block';
     }
 
     getAuthErrorMessage(error) {
-        // Same error messages as admin.js
+        console.log('Auth error code:', error.code);
         switch (error.code) {
             case 'auth/invalid-email': return 'Invalid email address.';
             case 'auth/user-disabled': return 'This account has been disabled.';
@@ -145,17 +217,46 @@ class AuthSystem {
             case 'auth/wrong-password': return 'Incorrect password.';
             case 'auth/email-already-in-use': return 'Email already in use.';
             case 'auth/weak-password': return 'Password should be at least 6 characters.';
-            default: return 'Authentication failed. Please try again.';
+            case 'auth/network-request-failed': return 'Network error. Please check your connection.';
+            default: return `Authentication failed: ${error.message}`;
         }
     }
 
     showMessage(message, type) {
-        // Implementation for showing messages
         const messageDiv = document.getElementById('authMessage');
-        messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
-        setTimeout(() => { messageDiv.innerHTML = ''; }, 5000);
+        if (messageDiv) {
+            if (message) {
+                messageDiv.innerHTML = `<div class="message ${type}">${message}</div>`;
+            } else {
+                messageDiv.innerHTML = '';
+            }
+        }
     }
 }
 
-// Initialize auth system
-const userAuth = new AuthSystem();
+// Make functions globally available for HTML onclick attributes
+function openLoginModal() {
+    userAuth.openAuthModal('login');
+}
+
+function openSignupModal() {
+    userAuth.openAuthModal('signup');
+}
+
+function closeAuthModal() {
+    userAuth.closeAuthModal();
+}
+
+function showLoginForm() {
+    userAuth.showLoginForm();
+}
+
+function showSignupForm() {
+    userAuth.showSignupForm();
+}
+
+// Initialize auth system when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing auth...');
+    window.userAuth = new AuthSystem();
+});
